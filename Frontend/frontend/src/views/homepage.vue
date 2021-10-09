@@ -84,7 +84,7 @@
       <section>
         <div class="section-left">
           <ul>
-            <li>Currently showing (55)</li>
+            <li style="margin-top: 15px;margin-bottom: -15px;">Currently showing (55)</li>
           </ul>
           <ul>
             <li>
@@ -96,7 +96,7 @@
                 <li><i>2021-10-01</i></li>
               </ul>
 
-              <div>
+              <div> 
                 <a href="">BUY TICKETS</a>
               </div>
             </li>
@@ -196,9 +196,9 @@
           </ul>
         </div>
       </section>
-      <footer>
+      <div class="footer">
         <p>COMP 5619 - Group 10</p>
-      </footer>
+      </div>
     </body>
   </div>
 </template>
@@ -455,19 +455,27 @@ section {
   background-image: linear-gradient(#9e6edd, #9198e5);
   display: flex;
   justify-content: space-between;
+  margin-bottom:15px;
 }
 .section-left {
-  margin-top: 20px;
+  margin-top:-14px;
   margin-left: 7%;
   width: 84%;
+  margin-bottom:15px;
 }
 .section-left > ul {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
+.section-left > ul > li{
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom:15px;
+}
 .section-left > ul:nth-child(1) > li {
   color: #ffffff;
+  margin-bottom:15px;
 }
 .section-left > ul:nth-child(1) > li > a {
   font-size: 14px;
@@ -476,9 +484,101 @@ section {
 .section-left > ul:nth-child(1) > li > a:hover {
   text-shadow: 1px 1px 1px black;
 }
-.section-left > ul > li > a > img {
-  width: 235px;
-  height: 315px;
+.section-left>ul>li>a>img{
+    width: 235px;
+    height: 315px;
+}
+
+@keyframes f47{
+    0%{
+        opacity: 0.6;
+
+    }
+
+    50%{
+        opacity: 0.8;
+    }
+
+
+    100%{
+        opacity: 1;
+        box-shadow: 2px 4px 10px black;
+        border-top-right-radius: 30px;
+    }
+}
+.section-left>ul>li>a>img:hover{
+    animation: f47 linear  1.5s infinite;
+}
+.section-left>ul{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.section-left>ul>li>div{
+    width: 235px;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    padding: 5px 0;
+}
+.section-left>ul>li>div:hover{
+    background: rgb(90, 24, 177);
+}
+.section-left>ul>li>div:hover a{
+    color: white;
+    text-shadow: 2px 2px 5px black;
+}
+.section-left>ul>li>div>a{
+    font-size: 14px;
+    color: rgb(90, 24, 177);
+}
+.section-left>ul>li{
+    position: relative;
+}
+.section-left>ul>li>img{
+    position: absolute;
+    top: 3px;
+    left: -3px;
+    width: 235px;
+}
+.pic-txt{
+    display: flex;
+    position: absolute;
+    top: 290px;
+    width: 235px;
+    padding: 3px 0;
+    /*left: 38px;*/
+    background: rgba(0, 0, 0, 0.22);
+}
+.pic-txt>li{
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+
+}
+.pic-txt>li:nth-child(1){
+    padding-right: 40%;
+}
+.pic-txt>li:nth-child(2){
+    color: #ffb40b;
+}
+.pic-txt>li>span{
+    font-size: 12px;
+}
+.footer{
+    width: 100%;
+    background-image: linear-gradient(#9198e5, white);
+    padding-top: -10px;
+    margin-top: -30px;
+}
+.footer>p{
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+}
+.footer>p:first-child{
+    padding-top: 50px;
+}
+.footer>p:last-child{
+    padding-bottom: 50px;
 }
 /* `XHTML, HTML4, HTML5 Reset
 ----------------------------------------------------------------------------------------------------*/
