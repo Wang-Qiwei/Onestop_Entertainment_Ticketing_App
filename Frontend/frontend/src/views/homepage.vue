@@ -452,7 +452,7 @@ header .header-inner .h-user-info a:hover p {
 
 section {
   width: 100%;
-  background-image: linear-gradient(#9e6edd, #9198e5);
+  background-image: linear-gradient(rgba(88, 0, 170, 1), rgba(194, 128, 255, 1));
   display: flex;
   justify-content: space-between;
   margin-bottom:15px;
@@ -517,7 +517,8 @@ section {
     width: 235px;
     border: 1px solid #ffffff;
     box-sizing: border-box;
-    padding: 5px 0;
+    background: #8400ff;
+    padding: 7px 0;
 }
 .section-left>ul>li>div:hover{
     background: rgb(90, 24, 177);
@@ -528,7 +529,7 @@ section {
 }
 .section-left>ul>li>div>a{
     font-size: 14px;
-    color: rgb(90, 24, 177);
+        color: white;
 }
 .section-left>ul>li{
     position: relative;
@@ -565,7 +566,7 @@ section {
 }
 .footer{
     width: 100%;
-    background-image: linear-gradient(#9198e5, white);
+    background-image: linear-gradient(rgba(194, 128, 255, 1), white);
     padding-top: -10px;
     margin-top: -30px;
 }
@@ -573,11 +574,7 @@ section {
     font-size: 12px;
     text-align: center;
     line-height: 18px;
-}
-.footer>p:first-child{
     padding-top: 50px;
-}
-.footer>p:last-child{
     padding-bottom: 50px;
 }
 /* `XHTML, HTML4, HTML5 Reset
