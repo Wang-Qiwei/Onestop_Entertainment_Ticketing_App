@@ -257,8 +257,8 @@ export default {
 <style scoped>
 .ant-carousel >>> .slick-slide {
   text-align: center;
-  /* height: 160px; */
-  /* line-height: 160px; */
+  height: 605px;
+  line-height: 605px;
   background: #364d79;
   overflow: hidden;
 }
@@ -421,7 +421,7 @@ header .header-inner .h-user-info a:hover p {
 }
 
 #main_div {
-  margin-top: 80px;
+  margin: 80px 0 20px 0;
   position: relative;
   width: 100%;
   height: 600px;
@@ -430,22 +430,21 @@ header .header-inner .h-user-info a:hover p {
 
 .carouslpic {
   overflow: hidden;
-  /* position: absolute; */
-  bottom: 10px;
+  bottom: 20px;
   right: 10px;
   color: #fff;
 }
-#main_div_img {
-  margin: 0;
-  padding: 0px;
-}
+/* #main_div_img {
+    margin: 0;
+    padding: 0px;
+    }
 
-#main_div_num li {
-  border: #fff solid 1px;
-  float: left;
-  margin: 0px 5px;
-  padding: 3px 10px;
-}
+    #main_div_num li {
+    border: #fff solid 1px;
+    float: left;
+    margin: 0px 5px;
+    padding: 3px 10px;
+    } */
 .numsover {
   background-color: rgb(90, 24, 177);
   color: #fff;
