@@ -1,192 +1,81 @@
 <template>
   <div class="container">
-    <img class="img " src="../assets/img/sign_in/u1.png" />
-    <img class="img " src="../assets/img/sign_in/u2.png" />
-    <img class="img " src="../assets/img/sign_in/u3.png" />
+    <div class="tit">
+      <h1 class="title">
+        Create <br />
+        account
+      </h1>
+    </div>
+    <p class="info">Name</p>
+    <a-input
+      class="input"
+      v-decorator="[
+        'name',
+        {
+          rules: [
+            {
+              required: true,
+              message: 'Please input your name',
+              whitespace: true,
+            },
+          ],
+        },
+      ]"
+    ></a-input>
+    <img src="../assets/img/normal_u7.svg" alt="" />
+    <p class="info">Email</p>
+    <a-input
+      class="input"
+      v-decorator="[
+        'email',
+        {
+          rules: [
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },
+          ],
+        },
+      ]"
+    >
+    </a-input>
+    <img src="../assets/img/normal_u7.svg" alt="" />
 
-    <h1 class="title">Create Account</h1>
+    <p class="info">Password</p>
+    <a-input
+      v-decorator="[
+        'password',
+        { rules: [{ required: true, message: 'Please input your Password!' }] },
+      ]"
+    ></a-input>
+    <img src="../assets/img/normal_u7.svg" alt="" />
+    <p class="signup">SIGN UP</p>
+    <img class="arrow" src="../assets/img/normal_u13.png" alt="" />
+    <p class="signin">SIGN IN</p>
 
-    <!-- <div class="form-container">
-      <a-form :form="form" @submit="handleSubmit">
-        <a-form-item v-bind="formItemLayout" label="E-mail">
-          <a-input
-            v-decorator="[
-              'email',
-              {
-                rules: [
-                  {
-                    type: 'email',
-                    message: 'The input is not valid E-mail!',
-                  },
-                  {
-                    required: true,
-                    message: 'Please input your E-mail!',
-                  },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item v-bind="formItemLayout" label="Password" has-feedback>
-          <a-input-password
-            v-decorator="[
-              'password',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input your password',
-                  },
-                  {
-                    validator: validateToNextPassword,
-                  },
-                  {
-                    min: 8,
-                    message: 'Your password must between 8 and 16 characters',
-                  },
-                  {
-                    max: 16,
-                    message: 'Your password must between 8 and 16 characters',
-                  },
-                ],
-              },
-            ]"
-            type="password"
-          />
-        </a-form-item>
-        <a-form-item
-          v-bind="formItemLayout"
-          label="Confirm Password"
-          has-feedback
-        >
-          <a-input
-            v-decorator="[
-              'confirm',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please confirm your password',
-                  },
-                  {
-                    validator: compareToFirstPassword,
-                  },
-                ],
-              },
-            ]"
-            type="password"
-            @blur="handleConfirmBlur"
-          />
-        </a-form-item>
-        <a-form-item v-bind="formItemLayout" label="Full Name">
-          <a-input
-            v-decorator="[
-              'fullname',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input your full name',
-                    whitespace: true,
-                  },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item
-          label="Please choose the appropirate role for your register"
-          class="radio-group"
-        >
-          <a-radio-group
-            v-decorator="[
-              'role',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please select your role',
-                  },
-                ],
-              },
-            ]"
-          >
-            <a-radio :style="radioStyle" value="1"> Applicant </a-radio>
-            <a-date-picker
-              v-if="this.form.getFieldValue('role') === '1'"
-              v-decorator="['optional', dateConfig]"
-              placeholder="Date of Birth"
-            />
-
-            <a-radio :style="radioStyle" value="2"> Health Worker </a-radio>
-            <a-input
-              v-if="this.form.getFieldValue('role') === '2'"
-              v-decorator="['optional', config]"
-              placeholder="Verification Code"
-            ></a-input>
-
-            <a-radio :style="radioStyle" value="3"> Project Owner </a-radio>
-            <a-input
-              v-if="this.form.getFieldValue('role') === '3'"
-              v-decorator="['optional', config]"
-              placeholder="Verification Code"
-            ></a-input>
-            <a-radio :style="radioStyle" value="4"> Admin </a-radio>
-
-            <a-input
-              v-if="this.form.getFieldValue('role') === '4'"
-              v-decorator="['optional', config]"
-              placeholder="Verification Code"
-            ></a-input>
-          </a-radio-group>
-        </a-form-item>
-        <a-form-item>
-          <a-checkbox
-            v-decorator="[
-              'agreement',
-              {
-                valuePropName: 'checked',
-                rules: [
-                  {
-                    required: true,
-                    message:
-                      'Please tick the checkbox after reading the agreement',
-                  },
-                ],
-              },
-            ]"
-          >
-            I have read the
-            <a class="agreement" href=""> agreement </a>
-          </a-checkbox>
-        </a-form-item>
-        <a-form-item>
-          <a-button
-            class="btn"
-            type="primary"
-            html-type="submit"
-            v-if="!uploading"
-          >
-            Register
-          </a-button>
-          <div class="spin-container" v-else>
-            <a-spin tip="Processing your request..." />
-          </div>
-        </a-form-item>
-      </a-form>
-    </div> -->
-    <!-- <router-view></router-view>
-    <router-link to="/user/login">Have an account?Login now</router-link> -->
+    <router-link to="/login"><p class="signin">SIGN IN</p></router-link>
   </div>
 </template>
 
-<script></script>
+<script>
+export default {};
+</script>
 
 <style scoped>
+.ant-input {
+  background: transparent;
+  border: 1px solid transparent;
+  margin: 0;
+  width: 340px;
+}
 .container {
   position: absolute;
-  left: 0px;
-  top: 0px;
+  margin-left: 40%;
+  top: 0;
   width: 428px;
   height: 926px;
   background: linear-gradient(
@@ -196,21 +85,88 @@
     rgba(88, 0, 170, 1) 99%
   );
 }
+.tit {
+  margin: 166px 104px 71px 31px;
+}
 .title {
   /* 测试用完删除 */
-  margin-top: 166px;
-
   font-family: "Lato-Regular", "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 53px;
   color: #f2f2f2;
   line-height: 71px;
+  text-align: left;
 }
+
 .img {
   float: right;
   margin: 5px;
   width: 18px;
   height: 18px;
+}
+.info {
+  font-size: 22px;
+  width: 60px;
+  height: 26px;
+  margin-left: 31px;
+  margin-bottom: 0;
+  background-color: rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  font-family: "Arial Regular", "Arial", sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: left;
+  line-height: normal;
+}
+/* .input {
+  background: transparent;
+  border: 1px solid transparent;
+  margin: 0;
+  width: 340px;
+}
+.inputpass {
+ 
+} */
+.signup {
+  font-size: 29px;
+  width: 120px;
+  height: 33px;
+  opacity: 0.95;
+  background-color: rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  font-family: "Arial Regular", "Arial", sans-serif;
+  font-weight: 700;
+  color: #f2f2f2;
+  text-align: left;
+  line-height: normal;
+  margin-left: 61px;
+  position: absolute;
+  top: 705px;
+}
+.signin {
+  width: 100px;
+  height: 23px;
+  font-size: 20px;
+  opacity: 0.63;
+  background-color: rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  font-family: "Arial Regular", "Arial", sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #7f7f7f;
+  text-align: left;
+  line-height: normal;
+  position: absolute;
+  top: 846px;
+  left: 53px;
+}
+.arrow {
+  width: 58px;
+  height: 58px;
+  opacity: 0.74;
+  position: absolute;
+  top: 693px;
+  right: 81px;
 }
 </style>

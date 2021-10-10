@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
     <head lang="en">
       <title>Tok-Tickets</title>
     </head>
@@ -202,56 +202,13 @@
     </body>
   </div>
 </template>
+
 <script>
 export default {
   data() {
     return {};
   },
-  methods: {
-    // imageAutoChange() {
-    //   var $imgs = document.getElementByid("#main_div_img li");
-    //   var $nums = document.getElementByid("#main_div_num li");
-    //   var isStop = false;
-    //   var index = 0;
-    //   $nums
-    //     .eq(index)
-    //     .addClass("numsover")
-    //     .siblings()
-    //     .removeClass("numsover");
-    //   $imgs.eq(index).show();
-    //   $nums
-    //     .mouseover(function() {
-    //       isStop = true;
-    //       this.addClass("numsover")
-    //         .siblings()
-    //         .removeClass("numsover");
-    //       index = $nums.index(this);
-    //       $imgs.eq(index).show("slow");
-    //       $imgs
-    //         .eq(index)
-    //         .siblings()
-    //         .hide("slow");
-    //     })
-    //     .mouseout(function() {
-    //       isStop = false;
-    //     });
-    //   setInterval(function() {
-    //     if (isStop) return;
-    //     if (index >= 2) index = -1;
-    //     index++;
-    //     $nums
-    //       .eq(index)
-    //       .addClass("numsover")
-    //       .siblings()
-    //       .removeClass("numsover");
-    //     $imgs
-    //       .eq(index)
-    //       .show("slow")
-    //       .siblings()
-    //       .hide("slow");
-    //   }, 2000);
-    // },
-  },
+  methods: {},
 };
 </script>
 <style scoped>
