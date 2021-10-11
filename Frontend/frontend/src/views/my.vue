@@ -42,70 +42,92 @@
         </div>
       </header>
       <div class="container">
-        <div class="top">
-          <div class="left">
-            <img src="../assets/img/u103.png" alt="" />
-            <div>
-              <h1>Name</h1>
-              <p>Money</p>
-              <p>Subject</p>
-              <p>Location,/120min</p>
-              <p>2021-10-01 Sydney Release</p>
-              <button>BUY TICKETS</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container2">
-        <div class="segmentation"></div>
-        <div class="description">
-          <h2>DESCRIPTION</h2>
-          <p class="txt">
+        <div class="user_info">
+          <img src="../assets/img/imgPC-header/avatar.png" />
+          <h2>User Name</h2>
+          <p>
             Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet,
             consectetur adipisicing elit. Adipisci autem consectetur corporis
             culpa deleniti dolores mollitia perferendis, perspiciatis sint sunt
             suscipit ullam, vel voluptatibus. Aperiam laboriosam mollitia optio
-            reiciendis. Labore nihil quo sed. Culpa earum hic ipsa, libero
-            magnam sed? Dignissimos dolores fugit labore modi quas quasi
-            reiciendis ut voluptates.
+            reiciendis.
           </p>
-        </div>
-        <br />
-        <div class="segmentation"></div>
-        <div class="roles">
-          <h2>PERFORMERS</h2>
-          <div class="roles_line">
-            <img src="../assets/img/roles.jpeg" alt="" />
-            <p class="txt">
-              Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit
-              amet, consectetur adipisicing elit. Adipisci autem consectetur
-              corporis culpa deleniti dolores mollitia perferendis, perspiciatis
-              sint sunt suscipit ullam, vel voluptatibus. Aperiam laboriosam
-              mollitia optio reiciendis. Labore nihil quo sed. Culpa earum hic
-              ipsa, libero magnam sed? Dignissimos dolores fugit labore modi
-              quas quasi reiciendis ut voluptates.Lorem ipsum dolor sit amet,
-              consectetur. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Adipisci autem consectetur corporis culpa deleniti dolores
-              mollitia perferendis, perspiciatis sint sunt suscipit ullam, vel
-              voluptatibus. Aperiam laboriosam mollitia optio reiciendis. Labore
-              nihil quo sed. Culpa earum hic ipsa, libero magnam sed?
-              Dignissimos dolores fugit labore modi quas quasi reiciendis ut
-              voluptates.
-            </p>
+          <div class="interior">
+            <a class="dialog" href="#open-modal">Edit Profile -></a>
           </div>
-          <br />
+          <div id="open-modal" class="modal-window">
+            <div>
+              <a href="#" title="Close" class="modal-close">Close</a>
+              <h1>Edit Profile</h1>
+              <form>
+                <div class="group">
+                  <input type="text" required />
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>New User Name</label>
+                </div>
+                <div class="group">
+                  <input type="text" required />
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>New Description</label>
+                </div>
+              </form>
+              <a href="#" title="Close" class="save-close">SAVE</a>
+            </div>
+          </div>
         </div>
-        <!-- <div class="segmentation"></div> -->
+        <div class="ticket_info">
+          <h2 style="text-align: left; margin-left:5%;">MY TICKETS</h2>
+          <div class="tickets_list">
+            <img src="../assets/img/u103.png" alt="" />
+            <div class="info">
+              <h2>Name: XXXXX</h2>
+              <h2>Time: 2021-10-01</h2>
+              <h2>Location: SYDNEY OPERA HOUSE</h2>
+            </div>
+            <div class="qr">
+              <h3>State: Incoming</h3>
+							<img src="../assets/img/qr.png" alt="" />
+            </div>
+          </div>
+					<div class="tickets_list">
+            <img src="../assets/img/u104.png" alt="" />
+            <div class="info">
+              <h2>Name: XXXXX</h2>
+              <h2>Time: 2021-10-01</h2>
+              <h2>Location: SYDNEY OPERA HOUSE</h2>
+            </div>
+            <div class="qr">
+              <h3>State: Incoming</h3>
+							<img src="../assets/img/qr.png" alt="" />
+            </div>
+          </div>
+					<div class="tickets_list">
+            <img src="../assets/img/u106.png" alt="" />
+            <div class="info">
+              <h2>Name: XXXXX</h2>
+              <h2>Time: 2021-10-01</h2>
+              <h2>Location: SYDNEY OPERA HOUSE</h2>
+            </div>
+            <div class="qr">
+              <h3>State: Incoming</h3>
+							<img src="../assets/img/qr.png" alt="" />
+            </div>
+          </div>
+        </div>
+				
       </div>
-
       <div class="footer">
         <p>COMP 5619 - Group 10</p>
       </div>
     </body>
   </div>
 </template>
+
 <script>
 </script>
+
 <style scoped>
 header {
   background: rgb(90, 24, 177);
@@ -259,120 +281,265 @@ header .header-inner .h-user-info a:hover p {
   transition: 0.2s;
 }
 .container {
-  position: relative;
+	position: relative;
   margin-top: 80px;
   width: 100%;
-  height: 400px;
+  height: 650px;
   background-image: linear-gradient(
     rgba(88, 0, 170, 1),
     rgba(194, 128, 255, 1)
   );
 }
-.container > div:nth-child(1) {
-  width: 940px;
+.user_info {
+  float: left;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
   position: absolute;
+  width: 15%;
   top: 50px;
-  left: 32%;
+  left: 13%;
+  border-radius: 7px;
+  border: 1px solid white;
+  box-sizing: border-box;
 }
-.left {
-  display: flex;
-  text-align: left;
+.ticket_info {
+  float: right;
+  margin: 0 auto;
+  position: absolute;
+  width: 57%;
+  top: 50px;
+  left: 30%;
+  border-radius: 7px;
+  border: 1px solid white;
+  box-sizing: border-box;
 }
-.left > img {
-  margin-right: 100px;
-  border: 2px solid white;
-  width: 235px;
+.user_info > img {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-.left > div > h1 {
-  color: white;
-  padding-top: 10px;
-  font-size: 36px;
-  line-height: 48px;
-}
-.left > div > p {
+.user_info > h2 {
+  margin-bottom: 20px;
   color: white;
   font-size: 24px;
-  line-height: 48px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.left > div > p:nth-child(3) {
-  padding-top: 5px;
-}
-.left > div > button {
-  margin-top: 20px;
-  width: 313px;
-  height: 40px;
-  margin-right: 10px;
-  background: #8400ff;
+.user_info > p {
+  margin-bottom: 20px;
   color: white;
-  padding: 7px 20px;
-  border-radius: 7px;
-  border: 1px solid #8400ff;
-  box-sizing: border-box;
-  font-family: "Arial Regular", "Arial", sans-serif;
-  font-weight: 700;
-  line-height: normal;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.left > div > button:hover {
-  box-sizing: border-box;
-  background: rgb(90, 24, 177);
-  text-shadow: 2px 2px 5px black;
+.ticket_info > h2 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: white;
+  font-size: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.left > div > button > img {
-  margin-right: 7px;
-  vertical-align: bottom;
+.dialog {
+  text-decoration: underline;
+  margin-bottom: 5px;
+  padding-right: 10px;
+  float: right;
 }
-.container2 {
+.modal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > div {
+  width: 800px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  background: #ffffff;
+}
+.modal-window header {
+  font-weight: bold;
+}
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+}
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: black;
+}
+.save-close {
+  color: rgba(88, 0, 170, 1);
+}
+.save-close:hover {
+  color: rgba(194, 128, 255, 1);
+}
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
   width: 100%;
-  background: rgba(194, 128, 255, 1);
+  border: none;
+  border-bottom: 1px solid #757575;
 }
-.segmentation {
-  width: 84%;
-  margin-left: 7%;
-  border-bottom: 2px solid #e2e2e2;
+input:focus {
+  outline: none;
 }
-.description {
-  width: 85%;
-  margin-left: 7%;
-  text-align: left;
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
 }
-.description > h2 {
+input:focus ~ label,
+input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: rgba(88, 0, 170, 1);
+}
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: rgba(88, 0, 170, 1);
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
+}
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: rgba(88, 0, 170, 1);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: rgba(88, 0, 170, 1);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: rgba(88, 0, 170, 1);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+.tickets_list {
+  width: 90%;
+  margin-left: 5%;
+  height: 155px;
+  border-bottom: 2px solid rgb(177, 176, 176);
+  margin-bottom: 20px;
+}
+.tickets_list > img {
+  width: 100px;
+  height: 135px;
+  float: left;
+	margin-left: 5%;
+}
+.info {
+  margin-bottom: 23px;
+  margin-left: 30%;
+  width: 40%;
+  position: absolute;
+}
+.info > h2 {
+  margin-bottom: 23px;
   color: white;
-  font-size: 28px;
-  padding-left: 5px;
-  margin: 26px 0;
-  border-left: 3px solid rgba(88, 0, 170, 1);
-}
-.txt {
   font-size: 20px;
-}
-.roles {
-  width: 85%;
-  margin-left: 7%;
   text-align: left;
 }
-.roles > h2 {
-  color: white;
-  font-size: 28px;
-  padding-left: 5px;
-  margin: 26px 0;
-  border-left: 3px solid rgba(88, 0, 170, 1);
+.qr {
+  float: right;
+  margin-left: 70%;
+  width: 20%;
+  position: absolute;
 }
-.roles_line {
-  text-align: left;
-  display: flex;
+.qr > img {
+  width: 100px;
+  height: 100px;
 }
-.roles_line > img {
-  display: flex;
-  border: 2px solid white;
-  width: 150px;
-  height: 200px;
-}
-.roles_line > p {
-  display: flex;
-  margin-left: 50px;
+.qr > h3 {
+	margin-bottom: 5px;
+	color: white;
+  font-size: 18px;
+	/* text-align: left; */
 }
 
 .footer {
