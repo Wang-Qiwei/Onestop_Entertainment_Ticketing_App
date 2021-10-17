@@ -29,7 +29,7 @@
 
           <p class="info">
             Password
-            <router-link to="/forgetpass"
+            <router-link to="/forgotpass"
               ><font class="forget">Forgot password ?</font></router-link
             >
           </p>
