@@ -360,11 +360,9 @@ export default {
 <style scoped>
 .ant-input {
   width: 486px;
-  height: 41px;
 }
 .ant-input-password {
   width: 486px;
-  height: 41px;
 }
 .container {
   width: 100%;
