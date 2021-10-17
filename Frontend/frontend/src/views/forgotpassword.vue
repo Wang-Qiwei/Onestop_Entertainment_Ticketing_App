@@ -35,7 +35,9 @@
             <p class="info">Verification Code*</p>
             <a-input class="code"></a-input>
           </a-form-item>
-          <a-button class="verify">Verify</a-button>
+          <router-link to="/passreset">
+            <a-button class="verify">Verify</a-button></router-link
+          >
         </a-form>
       </div>
     </div>

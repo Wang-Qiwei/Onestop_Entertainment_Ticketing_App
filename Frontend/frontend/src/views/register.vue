@@ -29,7 +29,7 @@
 
           <p class="info">Password*</p>
           <a-form-item v-bind="formItemLayout" has-feedback>
-            <a-input
+            <a-input-password
               v-decorator="[
                 'password',
                 {
@@ -41,6 +41,14 @@
                     {
                       validator: validateToNextPassword,
                     },
+                    {
+                      min: 8,
+                      message: 'Your password must between 8 and 16 characters',
+                    },
+                    {
+                      max: 16,
+                      message: 'Your password must between 8 and 16 characters',
+                    },
                   ],
                 },
               ]"
@@ -49,7 +57,7 @@
           </a-form-item>
           <p class="info">Confirm Password*</p>
           <a-form-item v-bind="formItemLayout" has-feedback>
-            <a-input
+            <a-input-password
               v-decorator="[
                 'confirm',
                 {
@@ -85,14 +93,16 @@
           </a>
         </a-checkbox>
         <div style="margin-top:20px">
-          <a-button
-            type="primary"
-            html-type="submit"
-            style="margin-left: 20px; background:#7f2fc9;  width: 140px;
+          <router-link to="/login">
+            <a-button
+              type="primary"
+              html-type="submit"
+              style="margin-left: 20px; background:#7f2fc9;  width: 140px;
   height: 40px;"
-          >
-            Sign up
-          </a-button>
+            >
+              Sign up
+            </a-button>
+          </router-link>
         </div>
       </div>
 
@@ -100,18 +110,259 @@
     </div>
   </div>
 </template>
-
 <script>
 import Header from "../components/header.vue";
+import axios from "axios";
 export default {
   components: {
     Header,
+  },
+  data() {
+    return {
+      formItemLayout: {
+        labelCol: { span: 24 },
+        wrapperCol: { span: 24 },
+      },
+    };
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: "userRegister" });
+  },
+  methods: {
+    async checkEmail() {
+      const { form } = this;
+      axios
+        .post(
+          "/api/PatientERecruitment/sys/checkMail",
+          form.getFieldValue("email")
+        )
+        .then((response) => {
+          console.log(response);
+          this.uploading = false;
+          if (!response.data.success) {
+            // alert("The email has been used.");
+            this.$message.error("The email has been used.");
+            this.uploading = false;
+            this.checkedEmail = false;
+            // return false;
+          } else {
+            console.log(response.data.success);
+            this.checkedEmail = true;
+            // return true;
+          }
+        })
+        .catch((error) => {
+          console.log("Email checking failed.");
+          console.log(error);
+          this.uploading = false;
+          this.$message.error("Email checking failed.");
+        });
+    },
+
+    async handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          console.log("Received values of form: ", values);
+          const { form } = this;
+          this.uploading = true;
+          axios
+            .post(
+              "/api/PatientERecruitment/sys/checkMail",
+              form.getFieldValue("email")
+            )
+            .then((response) => {
+              console.log(response);
+              if (!response.data.success) {
+                // alert("The email has been used.");
+                this.$message.error("The email has been used.");
+                this.checkedEmail = false;
+                // return false;
+              } else {
+                this.uploading = false;
+                console.log(response.data.success);
+                this.checkedEmail = true;
+                // return true;
+              }
+              const validationPassed = this.checkedEmail;
+              if (validationPassed === true) {
+                // post request for applicant registration
+                console.log(validationPassed);
+                if (form.getFieldValue("role") === "1") {
+                  const date = form.getFieldValue("optional").format();
+                  const cleanedDate = date.substring(0, 10);
+
+                  let data = {
+                    name: form.getFieldValue("fullname"),
+                    mail: form.getFieldValue("email"),
+                    password: form.getFieldValue("password"),
+                    verificationCode: "",
+                    roleId: form.getFieldValue("role"),
+                    birthday: cleanedDate,
+                  };
+
+                  this.$store
+                    .dispatch("register", data)
+                    .then((res) => {
+                      this.uploading = false;
+                      if (res.data.success) {
+                        this.$router.push("/user/login");
+                      } else if (res.data.code === 30016) {
+                        this.$message.error("Verification did not pass.");
+                      } else {
+                        this.$message.error("Register failed.");
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      this.$message.error(
+                        "Register failed or verification did not pass."
+                      );
+                      this.uploading = false;
+                    });
+                }
+
+                // post request for health worker registration
+                if (form.getFieldValue("role") === "2") {
+                  let data = {
+                    name: form.getFieldValue("fullname"),
+                    mail: form.getFieldValue("email"),
+                    password: form.getFieldValue("password"),
+                    verificationCode: form.getFieldValue("optional"),
+                    roleId: form.getFieldValue("role"),
+                    birthday: "",
+                  };
+
+                  this.$store
+                    .dispatch("register", data)
+                    .then((res) => {
+                      this.uploading = false;
+                      if (res.data.success) {
+                        this.$router.push("/user/login");
+                      } else if (res.data.code === 30016) {
+                        this.$message.error("Verification did not pass.");
+                      } else {
+                        console.log(res.data.code);
+                        this.$message.error("Register failed.");
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      this.$message.error(
+                        "Register failed or verification did not pass."
+                      );
+                      this.uploading = false;
+                    });
+                }
+
+                // post request for project owner registration
+                if (form.getFieldValue("role") === "3") {
+                  let data = {
+                    name: form.getFieldValue("fullname"),
+                    mail: form.getFieldValue("email"),
+                    password: form.getFieldValue("password"),
+                    verificationCode: form.getFieldValue("optional"),
+                    roleId: form.getFieldValue("role"),
+                    birthday: "",
+                  };
+
+                  this.$store
+                    .dispatch("register", data)
+                    .then((res) => {
+                      this.uploading = false;
+                      if (res.data.success) {
+                        this.$router.push("/user/login");
+                      } else if (res.data.code === 30016) {
+                        this.$message.error("Verification did not pass.");
+                      } else {
+                        console.log(res.data.code);
+                        this.$message.error("Register failed.");
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      this.$message.error(
+                        "Register failed or verification did not pass."
+                      );
+                      this.uploading = false;
+                    });
+                }
+
+                // post request for admin registration
+                if (form.getFieldValue("role") === "4") {
+                  let data = {
+                    name: form.getFieldValue("fullname"),
+                    mail: form.getFieldValue("email"),
+                    password: form.getFieldValue("password"),
+                    verificationCode: form.getFieldValue("optional"),
+                    roleId: form.getFieldValue("role"),
+                    birthday: "",
+                  };
+
+                  this.$store
+                    .dispatch("register", data)
+                    .then((res) => {
+                      this.uploading = false;
+                      if (res.data.success) {
+                        this.$router.push("/user/login");
+                      } else if (res.data.code === 30016) {
+                        this.$message.error("Verification did not pass.");
+                      } else {
+                        console.log(res.data.code);
+                        this.$message.error("Register failed.");
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      this.$message.error(
+                        "Register failed or verification did not pass."
+                      );
+                      this.uploading = false;
+                    });
+                }
+              }
+            })
+            .catch((error) => {
+              console.log("Email checking failed.");
+              console.log(error);
+              this.uploading = false;
+              this.$message.error("Email checking failed.");
+            });
+        }
+      });
+    },
+
+    handleConfirmBlur(e) {
+      const value = e.target.value;
+      this.confirmDirty = this.confirmDirty || !!value;
+    },
+
+    compareToFirstPassword(rule, value, callback) {
+      const form = this.form;
+      if (value && value !== form.getFieldValue("password")) {
+        callback("Passwords are not the same");
+      } else {
+        callback();
+      }
+    },
+
+    validateToNextPassword(rule, value, callback) {
+      const form = this.form;
+      if (value && this.confirmDirty) {
+        form.validateFields(["confirm"], { force: true });
+      }
+      callback();
+    },
   },
 };
 </script>
 
 <style scoped>
 .ant-input {
+  width: 486px;
+  height: 41px;
+}
+.ant-input-password {
   width: 486px;
   height: 41px;
 }
@@ -127,7 +378,7 @@ export default {
 }
 .block {
   width: 1052px;
-  height: 820px;
+  height: 920px;
   padding: 2px 2px 2px 2px;
   border: 1px solid #797979;
   background-color: #ffffff;
