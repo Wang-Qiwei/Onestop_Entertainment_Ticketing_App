@@ -11,6 +11,7 @@ import Passreset from "../views/passreset.vue";
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
+    { path: "/", redirect: "./register" },
     // 动态路径参数 以冒号开头
     { path: "/homepage", component: Home },
     { path: "/register", component: Register },
