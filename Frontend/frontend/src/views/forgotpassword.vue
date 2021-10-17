@@ -4,11 +4,15 @@
 
     <div class="block">
       <div>
-        <p class="title">Log in</p>
+        <p class="title">Forgot password</p>
+        <p class="alert">
+          Enter your user account's verified email address <br />We will send
+          you a verification code
+        </p>
         <a-form :form="form" @submit="handleSubmit">
-          <p class="info">Email</p>
-          <a-form-item v-bind="formItemLayout">
+          <a-form-item style="margin:20px auto" v-bind="formItemLayout">
             <a-input
+              placeholder="Enter your Email address"
               v-decorator="[
                 'email',
                 {
@@ -25,51 +29,15 @@
                 },
               ]"
             />
+            <a-button class="but">Send verification code</a-button>
           </a-form-item>
-
-          <p class="info">
-            Password
-            <router-link to="/forgetpass"
-              ><font class="forget">Forgot password ?</font></router-link
-            >
-          </p>
-          <a-form-item v-bind="formItemLayout" has-feedback>
-            <a-input
-              v-decorator="[
-                'password',
-                {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please input your password!',
-                    },
-                    {
-                      validator: validateToNextPassword,
-                    },
-                  ],
-                },
-              ]"
-              type="password"
-            />
+          <a-form-item v-bind="formItemLayout">
+            <p class="info">Verification Code*</p>
+            <a-input class="code"></a-input>
           </a-form-item>
+          <a-button class="verify">Verify</a-button>
         </a-form>
-        <div style="margin-top:20px">
-          <router-link to="/homepage">
-            <a-button
-              type="primary"
-              html-type="submit"
-              style="margin:20px auto;background:#7f2fc9;  width: 140px;
-  height: 40px; font-size:18px"
-            >
-              Sign in
-            </a-button>
-          </router-link>
-        </div>
       </div>
-
-      <router-link to="/Register"
-        ><p class="signin">Do not have an account? Sign up here</p></router-link
-      >
     </div>
   </div>
 </template>
@@ -85,8 +53,27 @@ export default {
 
 <style scoped>
 .ant-input {
-  width: 486px;
+  width: 400px;
   height: 41px;
+}
+.code {
+  width: 400px;
+  float: left;
+  margin-left: 240px;
+}
+.but {
+  width: 140px;
+  height: 40px;
+  padding: 2px 2px 2px 2px;
+  border-radius: 5px;
+  background-color: #7f2fc9;
+  box-sizing: border-box;
+  font-family: "ArialMT", "Arial", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  line-height: normal;
+  margin-left: 20px;
+  font-size: 13px;
 }
 .container {
   width: 100%;
@@ -108,7 +95,7 @@ export default {
 }
 .title {
   margin: 20px auto;
-  width: 114px;
+  width: 327px;
   height: 39px;
   background-color: rgba(255, 255, 255, 0);
   box-sizing: border-box;
@@ -118,6 +105,13 @@ export default {
   text-align: left;
   line-height: normal;
   font-size: 34px;
+}
+.alert {
+  font-size: 20px;
+  font-weight: bold;
+  width: 550px;
+  margin: 10px auto;
+  text-align: left;
 }
 .info {
   height: 21px;
@@ -129,18 +123,22 @@ export default {
   text-align: left;
   line-height: normal;
   font-size: 18px;
-  margin-left: 283px;
-  margin-top: 20px;
+  margin-left: 245px;
 }
-.forget {
-  float: right;
-  font-size: 16px;
-  color: rgb(9, 105, 218);
-  margin-right: 270px;
-}
-.signin {
-  font-size: 18px;
 
-  color: #7f2fc9;
+.verify {
+  width: 160px;
+  height: 50px;
+  padding: 2px 2px 2px 2px;
+  border-radius: 5px;
+  background-color: #7f2fc9;
+  box-sizing: border-box;
+  font-family: "ArialMT", "Arial", sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  line-height: normal;
+  font-size: 20px;
+  margin-top: 30px;
 }
 </style>

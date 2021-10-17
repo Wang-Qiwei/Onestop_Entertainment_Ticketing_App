@@ -1,83 +1,123 @@
 <template>
   <div class="container">
-    <div class="tit">
-      <h1 class="title">
-        Create <br />
-        account
-      </h1>
+    <Header style="margin-bottom: 100px"></Header>
+
+    <div class="block">
+      <p class="title">Sign up to TokTickets</p>
+      <div>
+        <a-form :form="form" @submit="handleSubmit">
+          <p class="info">Email</p>
+          <a-form-item v-bind="formItemLayout">
+            <a-input
+              v-decorator="[
+                'email',
+                {
+                  rules: [
+                    {
+                      type: 'email',
+                      message: 'The input is not valid E-mail!',
+                    },
+                    {
+                      required: true,
+                      message: 'Please input your E-mail!',
+                    },
+                  ],
+                },
+              ]"
+            />
+          </a-form-item>
+
+          <p class="info">Password*</p>
+          <a-form-item v-bind="formItemLayout" has-feedback>
+            <a-input
+              v-decorator="[
+                'password',
+                {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please input your password!',
+                    },
+                    {
+                      validator: validateToNextPassword,
+                    },
+                  ],
+                },
+              ]"
+              type="password"
+            />
+          </a-form-item>
+          <p class="info">Confirm Password*</p>
+          <a-form-item v-bind="formItemLayout" has-feedback>
+            <a-input
+              v-decorator="[
+                'confirm',
+                {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please confirm your password!',
+                    },
+                    {
+                      validator: compareToFirstPassword,
+                    },
+                  ],
+                },
+              ]"
+              type="password"
+              @blur="handleConfirmBlur"
+            />
+          </a-form-item>
+          <p class="info">First Name*</p>
+          <a-input />
+          <p class="info">Last Name*</p>
+          <a-input />
+          <p class="info">Date of Birth*</p>
+          <a-input />
+        </a-form>
+        <a-checkbox
+          style="font-size:18px; margin-top:30px"
+          v-decorator="['agreement', { valuePropName: 'checked' }]"
+        >
+          I have read the
+          <a href="" style="color:#7f2fc9">
+            agreement
+          </a>
+        </a-checkbox>
+        <div style="margin-top:20px">
+          <a-button
+            type="primary"
+            html-type="submit"
+            style="margin-left: 20px; background:#7f2fc9;  width: 140px;
+  height: 40px;"
+          >
+            Sign up
+          </a-button>
+        </div>
+      </div>
+
+      <!-- <router-link to="/login"><p class="signin">SIGN IN</p></router-link> -->
     </div>
-    <p class="info">Name</p>
-    <a-input
-      class="input"
-      v-decorator="[
-        'name',
-        {
-          rules: [
-            {
-              required: true,
-              message: 'Please input your name',
-              whitespace: true,
-            },
-          ],
-        },
-      ]"
-    ></a-input>
-    <img src="../assets/img/normal_u7.svg" alt="" />
-    <p class="info">Email</p>
-    <a-input
-      class="input"
-      v-decorator="[
-        'email',
-        {
-          rules: [
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ],
-        },
-      ]"
-    >
-    </a-input>
-    <img src="../assets/img/normal_u7.svg" alt="" />
-
-    <p class="info">Password</p>
-    <a-input
-      v-decorator="[
-        'password',
-        { rules: [{ required: true, message: 'Please input your Password!' }] },
-      ]"
-    ></a-input>
-    <img src="../assets/img/normal_u7.svg" alt="" />
-    <p class="signup">SIGN UP</p>
-    <img class="arrow" src="../assets/img/normal_u13.png" alt="" />
-    <p class="signin">SIGN IN</p>
-
-    <router-link to="/login"><p class="signin">SIGN IN</p></router-link>
   </div>
 </template>
 
 <script>
-export default {};
+import Header from "../components/header.vue";
+export default {
+  components: {
+    Header,
+  },
+};
 </script>
 
 <style scoped>
 .ant-input {
-  background: transparent;
-  border: 1px solid transparent;
-  margin: 0;
-  width: 340px;
+  width: 486px;
+  height: 41px;
 }
 .container {
-  position: absolute;
-  margin-left: 40%;
-  top: 0;
-  width: 428px;
-  height: 926px;
+  width: 100%;
+  height: 1200px;
   background: linear-gradient(
     0deg,
     rgba(242, 242, 242, 1) 1%,
@@ -85,88 +125,38 @@ export default {};
     rgba(88, 0, 170, 1) 99%
   );
 }
-.tit {
-  margin: 166px 104px 71px 31px;
+.block {
+  width: 1052px;
+  height: 820px;
+  padding: 2px 2px 2px 2px;
+  border: 1px solid #797979;
+  background-color: #ffffff;
+  margin: 0 auto;
 }
 .title {
-  /* 测试用完删除 */
-  font-family: "Lato-Regular", "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 53px;
-  color: #f2f2f2;
-  line-height: 71px;
+  margin: 20px auto;
+  width: 351px;
+  height: 39px;
+  background-color: rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  font-family: "Arial-BoldMT", "Arial Bold", "Arial", sans-serif;
+  font-weight: bold;
+  color: #7f2fc9;
   text-align: left;
-}
-
-.img {
-  float: right;
-  margin: 5px;
-  width: 18px;
-  height: 18px;
+  line-height: normal;
+  font-size: 34px;
 }
 .info {
-  font-size: 22px;
-  width: 60px;
-  height: 26px;
-  margin-left: 31px;
-  margin-bottom: 0;
+  height: 21px;
   background-color: rgba(255, 255, 255, 0);
   box-sizing: border-box;
-  font-family: "Arial Regular", "Arial", sans-serif;
+  font-family: "ArialMT", "Arial", sans-serif;
   font-weight: 700;
-  color: #ffffff;
+  color: #7f2fc9;
   text-align: left;
   line-height: normal;
-}
-/* .input {
-  background: transparent;
-  border: 1px solid transparent;
-  margin: 0;
-  width: 340px;
-}
-.inputpass {
- 
-} */
-.signup {
-  font-size: 29px;
-  width: 120px;
-  height: 33px;
-  opacity: 0.95;
-  background-color: rgba(255, 255, 255, 0);
-  box-sizing: border-box;
-  font-family: "Arial Regular", "Arial", sans-serif;
-  font-weight: 700;
-  color: #f2f2f2;
-  text-align: left;
-  line-height: normal;
-  margin-left: 61px;
-  position: absolute;
-  top: 705px;
-}
-.signin {
-  width: 100px;
-  height: 23px;
-  font-size: 20px;
-  opacity: 0.63;
-  background-color: rgba(255, 255, 255, 0);
-  box-sizing: border-box;
-  font-family: "Arial Regular", "Arial", sans-serif;
-  font-weight: 700;
-  text-decoration: underline;
-  color: #7f7f7f;
-  text-align: left;
-  line-height: normal;
-  position: absolute;
-  top: 846px;
-  left: 53px;
-}
-.arrow {
-  width: 58px;
-  height: 58px;
-  opacity: 0.74;
-  position: absolute;
-  top: 693px;
-  right: 81px;
+  font-size: 18px;
+  margin-left: 283px;
+  margin-top: 20px;
 }
 </style>
