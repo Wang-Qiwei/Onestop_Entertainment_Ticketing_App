@@ -425,7 +425,7 @@ header .header-inner .h-user-info a:hover p {
   height: 100px;
 	margin-left: 23%;
 }
-input {
+.group > input {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
@@ -433,7 +433,7 @@ input {
   border: none;
   border-bottom: 1px solid #757575;
 }
-input:focus {
+.group > input:focus {
   outline: none;
 }
 label {
@@ -448,8 +448,8 @@ label {
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
 }
-input:focus ~ label,
-input:valid ~ label {
+.group > input:focus ~ label,
+.group > input:valid ~ label {
   top: -20px;
   font-size: 14px;
   color: rgba(88, 0, 170, 1);
@@ -477,8 +477,8 @@ input:valid ~ label {
 .bar:after {
   right: 50%;
 }
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
+.group > input:focus ~ .bar:before,
+.group > input:focus ~ .bar:after {
   width: 50%;
 }
 .highlight {
@@ -490,7 +490,7 @@ input:focus ~ .bar:after {
   pointer-events: none;
   opacity: 0.5;
 }
-input:focus ~ .highlight {
+.group > input:focus ~ .highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
