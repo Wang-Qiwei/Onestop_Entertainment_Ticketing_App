@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
     <head lang="en">
       <title>Tok-Tickets</title>
     </head>
@@ -36,11 +36,11 @@
           </form>
 
           <div class="h-user-info">
-            <a href="denglu.html" class="header-li-wh">
+            <router-link to="/login" class="header-li-wh">
               <img src="../assets/img/imgPC-header/avatar.png" />
               <span></span>
-              <p>Login</p>
-            </a>
+              <p>Login</p></router-link
+            >
           </div>
         </div>
       </header>
@@ -64,27 +64,14 @@
             />
           </div>
         </a-carousel>
-
-        <!--太复杂没必要 antd一个走马灯组件就能实现>-->
-        <!-- <ul id="main_div_img">
-          <li>
-            <img src="../assets/img/post.png" width="100%" height="600" />
-          </li>
-          <li>
-            <img src="../assets/img/u113.png" width="100%" height="600" />
-          </li>
-        </ul>
-
-        <ul id="main_div_num">
-          <li>1</li>
-          <li>2</li>
-        </ul> -->
       </div>
 
       <section>
         <div class="section-left">
           <ul>
-            <li style="margin-top: 15px;margin-bottom: -15px;">Currently showing (55)</li>
+            <li style="margin-top: 15px;margin-bottom: -15px;">
+              Currently showing (55)
+            </li>
           </ul>
           <ul>
             <li>
@@ -96,8 +83,8 @@
                 <li><i>2021-10-01</i></li>
               </ul>
 
-              <div> 
-                <a href="">BUY TICKETS</a>
+              <div>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
             <li>
@@ -110,7 +97,7 @@
               </ul>
 
               <div>
-                <a href="">BUY TICKETS</a>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
             <li>
@@ -123,7 +110,7 @@
               </ul>
 
               <div>
-                <a href="">BUY TICKETS</a>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
             <li>
@@ -136,7 +123,7 @@
               </ul>
 
               <div>
-                <a href="">BUY TICKETS</a>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
           </ul>
@@ -151,7 +138,7 @@
               </ul>
 
               <div>
-                <a href="">BUY TICKETS</a>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
             <li>
@@ -164,7 +151,7 @@
               </ul>
 
               <div>
-                <a href="">BUY TICKETS</a>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
             <li>
@@ -177,7 +164,7 @@
               </ul>
 
               <div>
-                <a href="">BUY TICKETS</a>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
             <li>
@@ -190,7 +177,7 @@
               </ul>
 
               <div>
-                <a href="">BUY TICKETS</a>
+                <router-link to="/buyticket">BUY TICKETS</router-link>
               </div>
             </li>
           </ul>
@@ -202,56 +189,13 @@
     </body>
   </div>
 </template>
+
 <script>
 export default {
   data() {
     return {};
   },
-  methods: {
-    // imageAutoChange() {
-    //   var $imgs = document.getElementByid("#main_div_img li");
-    //   var $nums = document.getElementByid("#main_div_num li");
-    //   var isStop = false;
-    //   var index = 0;
-    //   $nums
-    //     .eq(index)
-    //     .addClass("numsover")
-    //     .siblings()
-    //     .removeClass("numsover");
-    //   $imgs.eq(index).show();
-    //   $nums
-    //     .mouseover(function() {
-    //       isStop = true;
-    //       this.addClass("numsover")
-    //         .siblings()
-    //         .removeClass("numsover");
-    //       index = $nums.index(this);
-    //       $imgs.eq(index).show("slow");
-    //       $imgs
-    //         .eq(index)
-    //         .siblings()
-    //         .hide("slow");
-    //     })
-    //     .mouseout(function() {
-    //       isStop = false;
-    //     });
-    //   setInterval(function() {
-    //     if (isStop) return;
-    //     if (index >= 2) index = -1;
-    //     index++;
-    //     $nums
-    //       .eq(index)
-    //       .addClass("numsover")
-    //       .siblings()
-    //       .removeClass("numsover");
-    //     $imgs
-    //       .eq(index)
-    //       .show("slow")
-    //       .siblings()
-    //       .hide("slow");
-    //   }, 2000);
-    // },
-  },
+  methods: {},
 };
 </script>
 <style scoped>
@@ -452,30 +396,33 @@ header .header-inner .h-user-info a:hover p {
 
 section {
   width: 100%;
-  background-image: linear-gradient(rgba(88, 0, 170, 1), rgba(194, 128, 255, 1));
+  background-image: linear-gradient(
+    rgba(88, 0, 170, 1),
+    rgba(194, 128, 255, 1)
+  );
   display: flex;
   justify-content: space-between;
-  margin-bottom:15px;
+  margin-bottom: 15px;
 }
 .section-left {
-  margin-top:-14px;
+  margin-top: -14px;
   margin-left: 7%;
   width: 84%;
-  margin-bottom:15px;
+  margin-bottom: 15px;
 }
 .section-left > ul {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
-.section-left > ul > li{
+.section-left > ul > li {
   font-size: 18px;
   color: #ffffff;
-  margin-bottom:15px;
+  margin-bottom: 15px;
 }
 .section-left > ul:nth-child(1) > li {
   color: #ffffff;
-  margin-bottom:15px;
+  margin-bottom: 15px;
 }
 .section-left > ul:nth-child(1) > li > a {
   font-size: 14px;
@@ -484,98 +431,95 @@ section {
 .section-left > ul:nth-child(1) > li > a:hover {
   text-shadow: 1px 1px 1px black;
 }
-.section-left>ul>li>a>img{
-    width: 235px;
-    height: 315px;
+.section-left > ul > li > a > img {
+  width: 235px;
+  height: 315px;
 }
 
-@keyframes f47{
-    0%{
-        opacity: 0.6;
+@keyframes f47 {
+  0% {
+    opacity: 0.6;
+  }
 
-    }
+  50% {
+    opacity: 0.8;
+  }
 
-    50%{
-        opacity: 0.8;
-    }
-
-
-    100%{
-        opacity: 1;
-        box-shadow: 2px 4px 10px black;
-        border-top-right-radius: 30px;
-    }
+  100% {
+    opacity: 1;
+    box-shadow: 2px 4px 10px black;
+    border-top-right-radius: 30px;
+  }
 }
-.section-left>ul>li>a>img:hover{
-    animation: f47 linear  1.5s infinite;
+.section-left > ul > li > a > img:hover {
+  animation: f47 linear 1.5s infinite;
 }
-.section-left>ul{
-    text-align: center;
-    margin-bottom: 30px;
+.section-left > ul {
+  text-align: center;
+  margin-bottom: 30px;
 }
-.section-left>ul>li>div{
-    width: 235px;
-    border: 1px solid #ffffff;
-    box-sizing: border-box;
-    background: #8400ff;
-    padding: 7px 0;
+.section-left > ul > li > div {
+  width: 235px;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  background: #8400ff;
+  padding: 7px 0;
 }
-.section-left>ul>li>div:hover{
-    background: rgb(90, 24, 177);
+.section-left > ul > li > div:hover {
+  background: rgb(90, 24, 177);
 }
-.section-left>ul>li>div:hover a{
-    color: white;
-    text-shadow: 2px 2px 5px black;
+.section-left > ul > li > div:hover a {
+  color: white;
+  text-shadow: 2px 2px 5px black;
 }
-.section-left>ul>li>div>a{
-    font-size: 14px;
-        color: white;
+.section-left > ul > li > div > a {
+  font-size: 14px;
+  color: white;
 }
-.section-left>ul>li{
-    position: relative;
+.section-left > ul > li {
+  position: relative;
 }
-.section-left>ul>li>img{
-    position: absolute;
-    top: 3px;
-    left: -3px;
-    width: 235px;
+.section-left > ul > li > img {
+  position: absolute;
+  top: 3px;
+  left: -3px;
+  width: 235px;
 }
-.pic-txt{
-    display: flex;
-    position: absolute;
-    top: 290px;
-    width: 235px;
-    padding: 3px 0;
-    /*left: 38px;*/
-    background: rgba(0, 0, 0, 0.22);
+.pic-txt {
+  display: flex;
+  position: absolute;
+  top: 290px;
+  width: 235px;
+  padding: 3px 0;
+  /*left: 38px;*/
+  background: rgba(0, 0, 0, 0.22);
 }
-.pic-txt>li{
-    color: white;
-    font-weight: 700;
-    font-size: 14px;
-
+.pic-txt > li {
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
 }
-.pic-txt>li:nth-child(1){
-    padding-right: 40%;
+.pic-txt > li:nth-child(1) {
+  padding-right: 40%;
 }
-.pic-txt>li:nth-child(2){
-    color: #ffb40b;
+.pic-txt > li:nth-child(2) {
+  color: #ffb40b;
 }
-.pic-txt>li>span{
-    font-size: 12px;
+.pic-txt > li > span {
+  font-size: 12px;
 }
-.footer{
-    width: 100%;
-    background-image: linear-gradient(rgba(194, 128, 255, 1), white);
-    padding-top: -10px;
-    margin-top: -30px;
+.footer {
+  width: 100%;
+  background-image: linear-gradient(rgba(194, 128, 255, 1), white);
+  padding-top: -10px;
+  margin-top: -30px;
 }
-.footer>p{
-    font-size: 12px;
-    text-align: center;
-    line-height: 18px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+.footer > p {
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 /* `XHTML, HTML4, HTML5 Reset
 ----------------------------------------------------------------------------------------------------*/

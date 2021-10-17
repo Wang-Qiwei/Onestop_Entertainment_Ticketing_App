@@ -1,0 +1,15 @@
+﻿
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440px" height="1958px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient cx="733.3333333333376" cy="83" r="7013.698166471892" gradientTransform="matrix(-0.9999975184480082 -0.002227801118905421 0.0006219391547431662 -0.279171065177664 1466.6132259120375 107.80491923027677 )" gradientUnits="userSpaceOnUse" id="RadialGradient33">
+      <stop id="Stop34" stop-color="#8400ff" offset="0" />
+      <stop id="Stop35" stop-color="#b86ffd" offset="0.27" />
+      <stop id="Stop36" stop-color="#fbfbfb" offset="1" />
+    </radialGradient>
+  </defs>
+  <g transform="matrix(1 0 0 1 0 -83 )">
+    <path d="M 0.5 83.5  L 1439.5 83.5  L 1439.5 2040.5  L 0.5 2040.5  L 0.5 83.5  Z " fill-rule="nonzero" fill="url(#RadialGradient33)" stroke="none" />
+    <path d="M 0.5 83.5  L 1439.5 83.5  L 1439.5 2040.5  L 0.5 2040.5  L 0.5 83.5  Z " stroke-width="1" stroke="#797979" fill="none" />
+  </g>
+</svg>
