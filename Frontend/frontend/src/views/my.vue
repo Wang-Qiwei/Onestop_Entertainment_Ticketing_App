@@ -3,7 +3,7 @@
     <body>
       <header>
         <div class="header-inner">
-          <a href="index.html" class="h-logo"></a>
+          <img class="img" src="../assets/img/normal_u2.png" alt="" />
           <a
             href="index.html"
             class="h-p"
@@ -157,14 +157,15 @@ header .header-inner .header-li-wh {
 header .header-inner .header-li-wh p {
   color: #d8d8d8;
 }
-header .header-inner .h-logo {
-  width: 40px;
-  height: 40px;
-  background: url("../assets/img/imgPC-header/ticket-32.png") no-repeat;
+header .header-inner img {
+  width: 60px;
+  height: 60px;
 }
 header .header-inner .h-p {
   width: 100px;
   height: 18px;
+	font-size: 16px;
+	margin-left: -14px;
 }
 header .header-inner .h-city {
   height: 100%;
@@ -403,7 +404,7 @@ header .header-inner .h-user-info a:hover p {
   position: relative;
   margin-bottom: 45px;
 }
-input {
+.group > input {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
@@ -411,7 +412,7 @@ input {
   border: none;
   border-bottom: 1px solid #757575;
 }
-input:focus {
+.group > input:focus {
   outline: none;
 }
 label {
@@ -426,8 +427,8 @@ label {
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
 }
-input:focus ~ label,
-input:valid ~ label {
+.group > input:focus ~ label,
+.group > input:valid ~ label {
   top: -20px;
   font-size: 14px;
   color: rgba(88, 0, 170, 1);
@@ -455,8 +456,8 @@ input:valid ~ label {
 .bar:after {
   right: 50%;
 }
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
+.group > input:focus ~ .bar:before,
+.group > input:focus ~ .bar:after {
   width: 50%;
 }
 .highlight {
@@ -468,7 +469,7 @@ input:focus ~ .bar:after {
   pointer-events: none;
   opacity: 0.5;
 }
-input:focus ~ .highlight {
+.group > input:focus ~ .highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;

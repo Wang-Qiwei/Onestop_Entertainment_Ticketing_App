@@ -6,7 +6,7 @@
     <body>
       <header>
         <div class="header-inner">
-          <a href="index.html" class="h-logo"></a>
+          <img class="img" src="../assets/img/normal_u2.png" alt="" />
           <a
             href="index.html"
             class="h-p"
@@ -239,14 +239,15 @@ header .header-inner .header-li-wh p {
   color: #d8d8d8;
 }
 
-header .header-inner .h-logo {
-  width: 40px;
-  height: 40px;
-  background: url("../assets/img/imgPC-header/ticket-32.png") no-repeat;
+header .header-inner img {
+  width: 60px;
+  height: 60px;
 }
 header .header-inner .h-p {
   width: 100px;
   height: 18px;
+	font-size: 16px;
+	margin-left: -14px;
 }
 header .header-inner .h-city {
   height: 100%;

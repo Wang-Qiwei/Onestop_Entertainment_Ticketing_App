@@ -3,7 +3,7 @@
     <body>
       <header>
         <div class="header-inner">
-          <a href="index.html" class="h-logo"></a>
+          <img class="img" src="../assets/img/normal_u2.png" alt="" />
           <a
             href="index.html"
             class="h-p"
@@ -51,7 +51,26 @@
               <p>Subject</p>
               <p>Location,/120min</p>
               <p>2021-10-01 Sydney Release</p>
-              <button>BUY TICKETS</button>
+              <div class="interior">
+                <a class="dialog" href="#open-modal"> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;BUY TICKETS &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</a>
+              </div>
+              <div id="open-modal" class="modal-window">
+                <div>
+                  <a href="#" title="Close" class="modal-close">Close</a>
+                  <!-- <h1>BUY TICKETS</h1> -->
+                  <form>
+                    <div class="group">
+											<img src="../assets/img/alipay.jpeg" alt="" />
+											<h1><span style="color: grey; font-family:Times New Roman;">Amount: </span><b style="font-family:Times New Roman;">100$</b></h1>
+											<h1><span style="color: grey; font-family:Times New Roman;">Order: 198555</span></h1>
+											<h1><span style="color: grey; font-family:Times New Roman;">Description: Alipay Payment</span></h1>
+											<div class="payqr">
+												<img src="../assets/img/payqr.png" alt="" />
+											</div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -135,14 +154,15 @@ header .header-inner .header-li-wh {
 header .header-inner .header-li-wh p {
   color: #d8d8d8;
 }
-header .header-inner .h-logo {
-  width: 40px;
-  height: 40px;
-  background: url("../assets/img/imgPC-header/ticket-32.png") no-repeat;
+header .header-inner img {
+  width: 60px;
+  height: 60px;
 }
 header .header-inner .h-p {
   width: 100px;
   height: 18px;
+  font-size: 16px;
+  margin-left: -14px;
 }
 header .header-inner .h-city {
   height: 100%;
@@ -300,7 +320,7 @@ header .header-inner .h-user-info a:hover p {
 .left > div > p:nth-child(3) {
   padding-top: 5px;
 }
-.left > div > button {
+/* .left > div > div > button {
   margin-top: 20px;
   width: 313px;
   height: 40px;
@@ -315,14 +335,207 @@ header .header-inner .h-user-info a:hover p {
   font-weight: 700;
   line-height: normal;
 }
-.left > div > button:hover {
+.interior > button > a{
+	color: white;
+	font-family: "Arial Regular", "Arial", sans-serif;
+  font-weight: 700;
+} */
+.interior {
+	margin-top: 20px;
+}
+.dialog {
+  background: #8400ff;
+  color: white;
+  padding: 7px 20px;
+  border-radius: 7px;
+  border: 1px solid #8400ff;
+  box-sizing: border-box;
+  font-family: "Arial Regular", "Arial", sans-serif;
+  font-weight: 700;
+  line-height: normal;
+	font-size: 24px;
+}
+.dialog:hover {
   box-sizing: border-box;
   background: rgb(90, 24, 177);
   text-shadow: 2px 2px 5px black;
 }
-.left > div > button > img {
-  margin-right: 7px;
-  vertical-align: bottom;
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > div {
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  background: #ffffff;
+}
+.modal-window header {
+  font-weight: bold;
+}
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+	text-align: center;
+}
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: black;
+}
+.save-close {
+  color: rgba(88, 0, 170, 1);
+}
+.save-close:hover {
+  color: rgba(194, 128, 255, 1);
+}
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+.group > img {
+  height: 100px;
+	margin-left: 23%;
+}
+.group > input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+.group > input:focus {
+  outline: none;
+}
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.group > input:focus ~ label,
+.group > input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: rgba(88, 0, 170, 1);
+}
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: rgba(88, 0, 170, 1);
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+.group > input:focus ~ .bar:before,
+.group > input:focus ~ .bar:after {
+  width: 50%;
+}
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.group > input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: rgba(88, 0, 170, 1);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: rgba(88, 0, 170, 1);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: rgba(88, 0, 170, 1);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+.payqr{
+	width: 350px;
+	height: 350px;
+	position: relative;
+	margin-top: 25px;
+	margin-left: 11%;
+	border-top: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8;
+  border-bottom: 1px solid #d8d8d8;
+  border-left: 1px solid #d8d8d8;
+}
+.payqr > img{
+	height: 347px;
+	width: 348px;
 }
 .container2 {
   width: 100%;

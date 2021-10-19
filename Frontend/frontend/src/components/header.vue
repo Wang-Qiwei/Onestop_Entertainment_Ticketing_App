@@ -3,16 +3,16 @@
     <img class="img" src="../assets/img/normal_u2.png" alt="" />
     <p class="TokTickets">TokTickets</p>
 
-    <a-input-search
+    <!-- <a-input-search
       placeholder="Search"
       class="header-search"
       size="large"
       @search="onSearch"
-    >
+    > 
       <a-button slot="enterButton">
         <img src="../assets/img/normal_search.svg"
       /></a-button>
-    </a-input-search>
+    </a-input-search>-->
     <img class="img-home" src="../assets/img/normal_u8.png" alt="" />
   </div>
 </template>
