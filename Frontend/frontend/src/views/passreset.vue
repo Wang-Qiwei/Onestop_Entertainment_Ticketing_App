@@ -8,7 +8,7 @@
 
         <a-form :form="form" @submit="handleSubmit">
           <p class="info">New Password</p>
-          <a-form-item v-bind="formItemLayout" has-feedback>
+          <a-form-item has-feedback>
             <a-input-password
               v-decorator="[
                 'password',
@@ -89,10 +89,7 @@ export default {
     async checkEmail() {
       const { form } = this;
       axios
-        .post(
-          "/api/PatientERecruitment/sys/checkMail",
-          form.getFieldValue("email")
-        )
+        .post("/sys/login", form.getFieldValue("email"))
         .then((response) => {
           console.log(response);
           this.uploading = false;

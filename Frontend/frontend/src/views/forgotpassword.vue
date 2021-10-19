@@ -9,36 +9,23 @@
           Enter your user account's verified email address <br />We will send
           you a verification code
         </p>
-        <a-form :form="form" @submit="handleSubmit">
-          <a-form-item style="margin:20px auto" v-bind="formItemLayout">
-            <a-input
-              placeholder="Enter your Email address"
-              v-decorator="[
-                'email',
-                {
-                  rules: [
-                    {
-                      type: 'email',
-                      message: 'The input is not valid E-mail!',
-                    },
-                    {
-                      required: true,
-                      message: 'Please input your E-mail!',
-                    },
-                  ],
-                },
-              ]"
-            />
-            <a-button class="but">Send verification code</a-button>
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout">
-            <p class="info">Verification Code*</p>
-            <a-input class="code"></a-input>
-          </a-form-item>
-          <router-link to="/passreset">
-            <a-button class="verify">Verify</a-button></router-link
+        <a-form-item>
+          <a-input
+            v-model="email"
+            placeholder="please input your email"
+          ></a-input>
+
+          <a-button @click="handleSubmit" class="but"
+            >Send verification code</a-button
           >
-        </a-form>
+        </a-form-item>
+        <a-form-item>
+          <p class="info">Verification Code*</p>
+          <a-input class="code"></a-input>
+        </a-form-item>
+        <router-link to="/passreset">
+          <a-button class="verify">Verify</a-button></router-link
+        >
       </div>
     </div>
   </div>
@@ -46,9 +33,40 @@
 
 <script>
 import Header from "../components/header.vue";
+import axios from "axios";
 export default {
   components: {
     Header,
+  },
+  data() {
+    return {
+      email: this.email,
+    };
+  },
+  // beforeCreate() {
+  //   this.form = this.$form.createForm(this, { name: "login" });
+  // },
+
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      console.log(this.email);
+      axios({
+        method: "get",
+        url: `http://localhost:9999/elec5619/sys/sendEmailRequest/${this.email}`,
+        email: this.email,
+      })
+        .then((res) => {
+          console.log(res.data);
+
+          if (res.data.success === true) {
+            console.log("added the user to the contact list.");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
@@ -126,6 +144,7 @@ export default {
   line-height: normal;
   font-size: 18px;
   margin-left: 245px;
+  margin-top: 20px;
 }
 
 .verify {

@@ -5,12 +5,12 @@
     <div class="block">
       <div>
         <p class="title">Log in</p>
+        <p class="info">Email</p>
         <a-form :form="form" @submit="handleSubmit">
-          <p class="info">Email</p>
-          <a-form-item v-bind="formItemLayout">
+          <a-form-item>
             <a-input
               v-decorator="[
-                'email',
+                'mail',
                 {
                   rules: [
                     {
@@ -33,7 +33,7 @@
               ><font class="forget">Forgot password ?</font></router-link
             >
           </p>
-          <a-form-item v-bind="formItemLayout" has-feedback>
+          <a-form-item has-feedback>
             <a-input
               v-decorator="[
                 'password',
@@ -43,28 +43,28 @@
                       required: true,
                       message: 'Please input your password!',
                     },
-                    {
-                      validator: validateToNextPassword,
-                    },
                   ],
                 },
               ]"
               type="password"
             />
           </a-form-item>
-        </a-form>
-        <div style="margin-top:20px">
-          <router-link to="/homepage">
-            <a-button
-              type="primary"
-              html-type="submit"
-              style="margin:20px auto;background:#7f2fc9;  width: 140px;
+
+          <div style="margin-top:20px">
+            <!-- <router-link to="/homepage"> -->
+            <a-form-item>
+              <a-button
+                type="primary"
+                html-type="submit"
+                style="margin:20px auto;background:#7f2fc9;  width: 140px;
   height: 40px; font-size:18px"
-            >
-              Sign in
-            </a-button>
-          </router-link>
-        </div>
+              >
+                Sign in
+              </a-button>
+            </a-form-item>
+            <!-- </router-link> -->
+          </div>
+        </a-form>
       </div>
 
       <router-link to="/Register"
@@ -75,10 +75,53 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "../components/header.vue";
 export default {
   components: {
     Header,
+  },
+  data() {
+    return {
+      mail: "",
+      password: "",
+      // mail: this.form.getFieldValue("email"),
+      // password: this.form.getFieldValue("password"),
+    };
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: "login" });
+  },
+
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log("Received values of form: ", values);
+          axios
+            .post("http://localhost:9999/elec5619/sys/login", {
+              mail: this.form.getFieldValue("mail"),
+              password: this.form.getFieldValue("password"),
+            })
+            .then((res) => {
+              console.log(res.data);
+              // this.$store.commit("setToken", res.data.Authorization);
+              // if (store.state.token) {
+              //   this.$router.push("./homepage");
+              // }
+              if (res.data.success === true) {
+                console.log("added the user to the contact list.");
+              } else {
+                this.$router.replace("/login");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      });
+    },
   },
 };
 </script>
