@@ -25,7 +25,7 @@
             </Select>
           <nav>
             <ul>
-              <li><a href="index.html" class="header-li-wh">Home</a></li>
+              <li><router-link to="/homepage"><a class="header-li-wh">Home</a></router-link></li>
               <li><a href="musical.html" class="header-li-wh">Musical</a></li>
               <li><a href="festival.html" class="header-li-wh">Festival</a></li>
               <li><a href="concert.html" class="header-li-wh">Concert</a></li>
