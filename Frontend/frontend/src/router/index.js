@@ -10,6 +10,8 @@ import Passreset from "../views/passreset.vue";
 
 Vue.use(VueRouter);
 const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
   routes: [
     { path: "/", redirect: "./register" },
     // 动态路径参数 以冒号开头
@@ -23,4 +25,8 @@ const router = new VueRouter({
   ],
 });
 
+const VueRouterPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(to) {
+  VueRouterPush.call(this, to).catch((err) => err);
+};
 export default router;

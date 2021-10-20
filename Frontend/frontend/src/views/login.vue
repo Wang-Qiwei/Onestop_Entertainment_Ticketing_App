@@ -85,8 +85,6 @@ export default {
     return {
       mail: "",
       password: "",
-      // mail: this.form.getFieldValue("email"),
-      // password: this.form.getFieldValue("password"),
     };
   },
   beforeCreate() {
@@ -105,22 +103,22 @@ export default {
               password: this.form.getFieldValue("password"),
             })
             .then((res) => {
-              console.log(res.data);
               // this.$store.commit("setToken", res.data.Authorization);
               // if (store.state.token) {
               //   this.$router.push("./homepage");
               // }
               if (res.data.success === true) {
                 console.log("added the user to the contact list.");
+                this.$router.push("/homepage");
                 this.$message.success("Login Successed");
               } else {
-                this.$router.replace("/login");
+                this.$message.error(
+                  "Your email or password is incorrect. Please try again."
+                );
               }
             })
             .catch((err) => {
-              console.log("Login Failed.");
               console.log(err);
-              this.$message.error("Your email or password is incorrect. Please try again.");
             });
         }
       });

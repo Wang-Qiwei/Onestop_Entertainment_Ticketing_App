@@ -52,8 +52,8 @@ export default {
       e.preventDefault();
       console.log(this.email);
       axios({
-        method: "get",
-        url: `http://localhost:9999/elec5619/sys/sendEmailRequest/${this.email}`,
+        method: "post",
+        url: "http://localhost:9999/elec5619/sys/sendEmailRequest",
         email: this.email,
       })
         .then((res) => {
