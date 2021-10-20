@@ -6,17 +6,23 @@
     <body>
       <header>
         <div class="header-inner">
-          <img class="img" src="../assets/img/normal_u2.png" alt="" />
-          <a
-            href="index.html"
+          <router-link to="/homepage">
+            <img class="img" src="../assets/img/normal_u2.png" alt="" />
+          </router-link>
+          <router-link
+            to="/homepage"
             class="h-p"
-            style="font-family:fantasy; color: white;"
-            >Tok-Tickets</a
-          >
-
-          <div class="h-city header-li-wh">
-            <p>Sydeny<span></span></p>
-          </div>
+            style="font-family: fantasy; color: white"
+            >Tok-Tickets
+          </router-link>
+            <Select v-model="model1" class="h-city header-li-wh">
+              <Option
+                v-for="item in cityList"
+                :value="item.value"
+                :key="item.value"
+                >{{ item.label }}</Option
+              >
+            </Select>
           <nav>
             <ul>
               <li><a href="index.html" class="header-li-wh">Home</a></li>
@@ -39,8 +45,8 @@
             <router-link to="/login" class="header-li-wh">
               <img src="../assets/img/imgPC-header/avatar.png" />
               <span></span>
-              <p>Login</p></router-link
-            >
+              <p>Login</p>
+            </router-link>
           </div>
         </div>
       </header>
@@ -69,7 +75,7 @@
       <section>
         <div class="section-left">
           <ul>
-            <li style="margin-top: 15px;margin-bottom: -15px;">
+            <li style="margin-top: 15px; margin-bottom: -15px">
               Currently showing (55)
             </li>
           </ul>
@@ -193,9 +199,28 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      cityList: [
+        {
+          value: "Sydney",
+          label: "Sydney",
+        },
+        {
+          value: "Melbourne",
+          label: "Melbourne",
+        },
+        {
+          value: "Canberra",
+          label: "Canberra",
+        },
+        {
+          value: "Brisbane",
+          label: "Brisbane",
+        },
+      ],
+      model1: "",
+    };
   },
-  methods: {},
 };
 </script>
 <style scoped>
@@ -242,29 +267,23 @@ header .header-inner .header-li-wh p {
 header .header-inner img {
   width: 60px;
   height: 60px;
+  margin-left: -15px;
 }
 header .header-inner .h-p {
   width: 100px;
-  height: 18px;
-	font-size: 16px;
-	margin-left: -14px;
+  height: 13px;
+  font-size: 14px;
+  margin-left: -24px;
 }
 header .header-inner .h-city {
   height: 100%;
-  text-align: center;
+  text-align: right;
   line-height: 80px;
-  margin-left: 5px;
   cursor: pointer;
-}
-header .header-inner .h-city span {
-  display: inline-block;
-  vertical-align: 4px;
-  margin-left: 5px;
-  transition: all linear 0.3s;
-  border-top: 4px solid #d8d8d8;
-  border-right: 4px solid transparent;
-  border-bottom: 0px solid transparent;
-  border-left: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px solid transparent;
+  color: #d8d8d8;
+  width: 100px;
 }
 header .header-inner .h-city:hover {
   outline: 1px solid #d8d8d8;

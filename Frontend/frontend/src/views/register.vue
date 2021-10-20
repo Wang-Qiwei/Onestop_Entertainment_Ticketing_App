@@ -87,8 +87,8 @@
               ]"
             ></a-input>
           </a-form-item>
-          <p class="info">Date of Birth*</p>
-          <a-input />
+          <!-- <p class="info">Date of Birth*</p>
+          <a-input /> -->
           <a-form-item>
             <a-checkbox
               style="font-size:18px; margin-top:30px"
@@ -156,6 +156,7 @@ export default {
             this.$message.error("The email has been used.");
           } else if (response.data.success) {
             this.$router.push("/login");
+            this.$message.success("Sign up Successed");
           } else {
             console.log(response.data);
           }

@@ -13,7 +13,9 @@
         <img src="../assets/img/normal_search.svg"
       /></a-button>
     </a-input-search>-->
-    <img class="img-home" src="../assets/img/normal_u8.png" alt="" />
+    <router-link to="/homepage">
+      <img class="img-home" src="../assets/img/normal_u8.png" alt="" />
+    </router-link>
   </div>
 </template>
 <script>

@@ -59,7 +59,7 @@
                 style="margin:20px auto;background:#7f2fc9;  width: 140px;
   height: 40px; font-size:18px"
               >
-                Sign in
+                Log in
               </a-button>
             </a-form-item>
             <!-- </router-link> -->
@@ -112,12 +112,15 @@ export default {
               // }
               if (res.data.success === true) {
                 console.log("added the user to the contact list.");
+                this.$message.success("Login Successed");
               } else {
                 this.$router.replace("/login");
               }
             })
             .catch((err) => {
+              console.log("Login Failed.");
               console.log(err);
+              this.$message.error("Your email or password is incorrect. Please try again.");
             });
         }
       });

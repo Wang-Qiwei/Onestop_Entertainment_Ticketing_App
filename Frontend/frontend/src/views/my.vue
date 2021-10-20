@@ -3,17 +3,24 @@
     <body>
       <header>
         <div class="header-inner">
-          <img class="img" src="../assets/img/normal_u2.png" alt="" />
-          <a
-            href="index.html"
+          <router-link to="/homepage">
+            <img class="img" src="../assets/img/normal_u2.png" alt="" />
+          </router-link>
+          <router-link
+            to="/homepage"
             class="h-p"
             style="font-family: fantasy; color: white"
-            >Tok-Tickets</a
-          >
+            >Tok-Tickets
+          </router-link>
 
-          <div class="h-city header-li-wh">
-            <p>Sydeny<span></span></p>
-          </div>
+          <Select v-model="model1" class="h-city header-li-wh">
+            <Option
+              v-for="item in cityList"
+              :value="item.value"
+              :key="item.value"
+              >{{ item.label }}</Option
+            >
+          </Select>
           <nav>
             <ul>
               <li><a href="index.html" class="header-li-wh">Home</a></li>
@@ -33,11 +40,11 @@
           </form>
 
           <div class="h-user-info">
-            <a href="denglu.html" class="header-li-wh">
+            <router-link to="/login" class="header-li-wh">
               <img src="../assets/img/imgPC-header/avatar.png" />
               <span></span>
               <p>Login</p>
-            </a>
+            </router-link>
           </div>
         </div>
       </header>
@@ -78,7 +85,7 @@
           </div>
         </div>
         <div class="ticket_info">
-          <h2 style="text-align: left; margin-left:5%;">MY TICKETS</h2>
+          <h2 style="text-align: left; margin-left: 5%">MY TICKETS</h2>
           <div class="tickets_list">
             <img src="../assets/img/u103.png" alt="" />
             <div class="info">
@@ -88,10 +95,10 @@
             </div>
             <div class="qr">
               <h3>State: Incoming</h3>
-							<img src="../assets/img/qr.png" alt="" />
+              <img src="../assets/img/qr.png" alt="" />
             </div>
           </div>
-					<div class="tickets_list">
+          <div class="tickets_list">
             <img src="../assets/img/u104.png" alt="" />
             <div class="info">
               <h2>Name: XXXXX</h2>
@@ -100,10 +107,10 @@
             </div>
             <div class="qr">
               <h3>State: Incoming</h3>
-							<img src="../assets/img/qr.png" alt="" />
+              <img src="../assets/img/qr.png" alt="" />
             </div>
           </div>
-					<div class="tickets_list">
+          <div class="tickets_list">
             <img src="../assets/img/u106.png" alt="" />
             <div class="info">
               <h2>Name: XXXXX</h2>
@@ -112,11 +119,10 @@
             </div>
             <div class="qr">
               <h3>State: Incoming</h3>
-							<img src="../assets/img/qr.png" alt="" />
+              <img src="../assets/img/qr.png" alt="" />
             </div>
           </div>
         </div>
-				
       </div>
       <div class="footer">
         <p>COMP 5619 - Group 10</p>
@@ -126,6 +132,31 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      cityList: [
+        {
+          value: "Sydney",
+          label: "Sydney",
+        },
+        {
+          value: "Melbourne",
+          label: "Melbourne",
+        },
+        {
+          value: "Canberra",
+          label: "Canberra",
+        },
+        {
+          value: "Brisbane",
+          label: "Brisbane",
+        },
+      ],
+      model1: "",
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -160,29 +191,23 @@ header .header-inner .header-li-wh p {
 header .header-inner img {
   width: 60px;
   height: 60px;
+  margin-left: -15px;
 }
 header .header-inner .h-p {
   width: 100px;
-  height: 18px;
-	font-size: 16px;
-	margin-left: -14px;
+  height: 13px;
+  font-size: 14px;
+  margin-left: -24px;
 }
 header .header-inner .h-city {
   height: 100%;
-  text-align: center;
+  text-align: right;
   line-height: 80px;
-  margin-left: 5px;
   cursor: pointer;
-}
-header .header-inner .h-city span {
-  display: inline-block;
-  vertical-align: 4px;
-  margin-left: 5px;
-  transition: all linear 0.3s;
-  border-top: 4px solid #d8d8d8;
-  border-right: 4px solid transparent;
-  border-bottom: 0px solid transparent;
-  border-left: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px solid transparent;
+  color: #d8d8d8;
+  width: 100px;
 }
 header .header-inner .h-city:hover {
   outline: 1px solid #d8d8d8;
@@ -282,7 +307,7 @@ header .header-inner .h-user-info a:hover p {
   transition: 0.2s;
 }
 .container {
-	position: relative;
+  position: relative;
   margin-top: 80px;
   width: 100%;
   height: 650px;
@@ -512,7 +537,7 @@ label {
   width: 100px;
   height: 135px;
   float: left;
-	margin-left: 5%;
+  margin-left: 5%;
 }
 .info {
   margin-bottom: 23px;
@@ -537,10 +562,10 @@ label {
   height: 100px;
 }
 .qr > h3 {
-	margin-bottom: 5px;
-	color: white;
+  margin-bottom: 5px;
+  color: white;
   font-size: 18px;
-	/* text-align: left; */
+  /* text-align: left; */
 }
 
 .footer {

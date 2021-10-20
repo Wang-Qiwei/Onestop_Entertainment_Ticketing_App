@@ -3,17 +3,24 @@
     <body>
       <header>
         <div class="header-inner">
-          <img class="img" src="../assets/img/normal_u2.png" alt="" />
-          <a
-            href="index.html"
+          <router-link to="/homepage">
+            <img class="img" src="../assets/img/normal_u2.png" alt="" />
+          </router-link>
+          <router-link
+            to="/homepage"
             class="h-p"
             style="font-family: fantasy; color: white"
-            >Tok-Tickets</a
-          >
+            >Tok-Tickets
+          </router-link>
 
-          <div class="h-city header-li-wh">
-            <p>Sydeny<span></span></p>
-          </div>
+          <Select v-model="model1" class="h-city header-li-wh">
+            <Option
+              v-for="item in cityList"
+              :value="item.value"
+              :key="item.value"
+              >{{ item.label }}</Option
+            >
+          </Select>
           <nav>
             <ul>
               <li><a href="index.html" class="header-li-wh">Home</a></li>
@@ -33,11 +40,11 @@
           </form>
 
           <div class="h-user-info">
-            <a href="denglu.html" class="header-li-wh">
+            <router-link to="/login" class="header-li-wh">
               <img src="../assets/img/imgPC-header/avatar.png" />
               <span></span>
               <p>Login</p>
-            </a>
+            </router-link>
           </div>
         </div>
       </header>
@@ -52,7 +59,10 @@
               <p>Location,/120min</p>
               <p>2021-10-01 Sydney Release</p>
               <div class="interior">
-                <a class="dialog" href="#open-modal"> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;BUY TICKETS &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</a>
+                <a class="dialog" href="#open-modal">
+                  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;BUY TICKETS &nbsp;
+                  &nbsp;&nbsp; &nbsp; &nbsp;</a
+                >
               </div>
               <div id="open-modal" class="modal-window">
                 <div>
@@ -60,13 +70,25 @@
                   <!-- <h1>BUY TICKETS</h1> -->
                   <form>
                     <div class="group">
-											<img src="../assets/img/alipay.jpeg" alt="" />
-											<h1><span style="color: grey; font-family:Times New Roman;">Amount: </span><b style="font-family:Times New Roman;">100$</b></h1>
-											<h1><span style="color: grey; font-family:Times New Roman;">Order: 198555</span></h1>
-											<h1><span style="color: grey; font-family:Times New Roman;">Description: Alipay Payment</span></h1>
-											<div class="payqr">
-												<img src="../assets/img/payqr.png" alt="" />
-											</div>
+                      <img src="../assets/img/alipay.jpeg" alt="" />
+                      <h1>
+                        <span style="color: grey; font-family: Times New Roman"
+                          >Amount: </span
+                        ><b style="font-family: Times New Roman">100$</b>
+                      </h1>
+                      <h1>
+                        <span style="color: grey; font-family: Times New Roman"
+                          >Order: 198555</span
+                        >
+                      </h1>
+                      <h1>
+                        <span style="color: grey; font-family: Times New Roman"
+                          >Description: Alipay Payment</span
+                        >
+                      </h1>
+                      <div class="payqr">
+                        <img src="../assets/img/payqr.png" alt="" />
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -124,6 +146,31 @@
   </div>
 </template>
 <script>
+export default {
+  data() {
+    return {
+      cityList: [
+        {
+          value: "Sydney",
+          label: "Sydney",
+        },
+        {
+          value: "Melbourne",
+          label: "Melbourne",
+        },
+        {
+          value: "Canberra",
+          label: "Canberra",
+        },
+        {
+          value: "Brisbane",
+          label: "Brisbane",
+        },
+      ],
+      model1: "",
+    };
+  },
+};
 </script>
 <style scoped>
 header {
@@ -157,29 +204,23 @@ header .header-inner .header-li-wh p {
 header .header-inner img {
   width: 60px;
   height: 60px;
+  margin-left: -15px;
 }
 header .header-inner .h-p {
   width: 100px;
-  height: 18px;
-  font-size: 16px;
-  margin-left: -14px;
+  height: 13px;
+  font-size: 14px;
+  margin-left: -24px;
 }
 header .header-inner .h-city {
   height: 100%;
-  text-align: center;
+  text-align: right;
   line-height: 80px;
-  margin-left: 5px;
   cursor: pointer;
-}
-header .header-inner .h-city span {
-  display: inline-block;
-  vertical-align: 4px;
-  margin-left: 5px;
-  transition: all linear 0.3s;
-  border-top: 4px solid #d8d8d8;
-  border-right: 4px solid transparent;
-  border-bottom: 0px solid transparent;
-  border-left: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px solid transparent;
+  color: #d8d8d8;
+  width: 100px;
 }
 header .header-inner .h-city:hover {
   outline: 1px solid #d8d8d8;
@@ -341,7 +382,7 @@ header .header-inner .h-user-info a:hover p {
   font-weight: 700;
 } */
 .interior {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 .dialog {
   background: #8400ff;
@@ -353,7 +394,7 @@ header .header-inner .h-user-info a:hover p {
   font-family: "Arial Regular", "Arial", sans-serif;
   font-weight: 700;
   line-height: normal;
-	font-size: 24px;
+  font-size: 24px;
 }
 .dialog:hover {
   box-sizing: border-box;
@@ -395,7 +436,7 @@ header .header-inner .h-user-info a:hover p {
 .modal-window h1 {
   font-size: 150%;
   margin: 0 0 15px;
-	text-align: center;
+  text-align: center;
 }
 .modal-close {
   color: #aaa;
@@ -423,7 +464,7 @@ header .header-inner .h-user-info a:hover p {
 }
 .group > img {
   height: 100px;
-	margin-left: 23%;
+  margin-left: 23%;
 }
 .group > input {
   font-size: 18px;
@@ -522,20 +563,20 @@ label {
     background: transparent;
   }
 }
-.payqr{
-	width: 350px;
-	height: 350px;
-	position: relative;
-	margin-top: 25px;
-	margin-left: 11%;
-	border-top: 1px solid #d8d8d8;
+.payqr {
+  width: 350px;
+  height: 350px;
+  position: relative;
+  margin-top: 25px;
+  margin-left: 11%;
+  border-top: 1px solid #d8d8d8;
   border-right: 1px solid #d8d8d8;
   border-bottom: 1px solid #d8d8d8;
   border-left: 1px solid #d8d8d8;
 }
-.payqr > img{
-	height: 347px;
-	width: 348px;
+.payqr > img {
+  height: 347px;
+  width: 348px;
 }
 .container2 {
   width: 100%;
