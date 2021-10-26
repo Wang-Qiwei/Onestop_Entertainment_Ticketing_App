@@ -29,4 +29,18 @@ const VueRouterPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(to) {
   VueRouterPush.call(this, to).catch((err) => err);
 };
+router.beforeEach((to, from, next) => {
+  if (to.path !== from) {
+    next();
+  } else {
+    let token = localStorage.getItem("Authorization");
+
+    if (token === null || token === "") {
+      next("/login");
+    } else {
+      next();
+    }
+  }
+});
+
 export default router;

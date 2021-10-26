@@ -38,7 +38,7 @@
           <p class="info">
             Confirm New Password*
           </p>
-          <a-form-item v-bind="formItemLayout" has-feedback>
+          <a-form-item has-feedback>
             <a-input-password
               v-decorator="[
                 'confirm',
@@ -58,9 +58,9 @@
               @blur="handleConfirmBlur"
             />
           </a-form-item>
-          <router-link to="/login"
-            ><a-button class="but">Confirm</a-button></router-link
-          >
+          <a-form-item>
+            <a-button html-type="submit" class="but">Confirm</a-button>
+          </a-form-item>
         </a-form>
       </div>
     </div>
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import Header from "../components/header.vue";
+import Header from "../components/homepage-headerlayout.vue";
 import axios from "axios";
 export default {
   components: {
@@ -76,211 +76,40 @@ export default {
   },
   data() {
     return {
-      formItemLayout: {
-        labelCol: { span: 24 },
-        wrapperCol: { span: 24 },
-      },
+      email: "",
     };
   },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "userRegister" });
   },
+  created() {
+    this.getParams();
+  },
   methods: {
-    async checkEmail() {
-      const { form } = this;
-      axios
-        .post("/sys/login", form.getFieldValue("email"))
-        .then((response) => {
-          console.log(response);
-          this.uploading = false;
-          if (!response.data.success) {
-            // alert("The email has been used.");
-            this.$message.error("The email has been used.");
-            this.uploading = false;
-            this.checkedEmail = false;
-            // return false;
-          } else {
-            console.log(response.data.success);
-            this.checkedEmail = true;
-            // return true;
-          }
-        })
-        .catch((error) => {
-          console.log("Email checking failed.");
-          console.log(error);
-          this.uploading = false;
-          this.$message.error("Email checking failed.");
-        });
+    getParams() {
+      this.email = this.$route.query.email;
+      console.log(this.email);
     },
-
-    async handleSubmit(e) {
+    handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFieldsAndScroll((err, values) => {
+      this.form.validateFields((err, values) => {
         if (!err) {
           console.log("Received values of form: ", values);
-          const { form } = this;
-          this.uploading = true;
           axios
-            .post(
-              "/api/PatientERecruitment/sys/checkMail",
-              form.getFieldValue("email")
-            )
-            .then((response) => {
-              console.log(response);
-              if (!response.data.success) {
-                // alert("The email has been used.");
-                this.$message.error("The email has been used.");
-                this.checkedEmail = false;
-                // return false;
+            .post("http://localhost:9999/elec5619/sys/reset", {
+              email: this.email,
+              password: this.form.getFieldValue("password"),
+            })
+            .then((res) => {
+              if (res.data.success === true) {
+                this.$router.push("/login");
+                this.$message.success("Passsword Reset Successed");
               } else {
-                this.uploading = false;
-                console.log(response.data.success);
-                this.checkedEmail = true;
-                // return true;
-              }
-              const validationPassed = this.checkedEmail;
-              if (validationPassed === true) {
-                // post request for applicant registration
-                console.log(validationPassed);
-                if (form.getFieldValue("role") === "1") {
-                  const date = form.getFieldValue("optional").format();
-                  const cleanedDate = date.substring(0, 10);
-
-                  let data = {
-                    name: form.getFieldValue("fullname"),
-                    mail: form.getFieldValue("email"),
-                    password: form.getFieldValue("password"),
-                    verificationCode: "",
-                    roleId: form.getFieldValue("role"),
-                    birthday: cleanedDate,
-                  };
-
-                  this.$store
-                    .dispatch("register", data)
-                    .then((res) => {
-                      this.uploading = false;
-                      if (res.data.success) {
-                        this.$router.push("/user/login");
-                      } else if (res.data.code === 30016) {
-                        this.$message.error("Verification did not pass.");
-                      } else {
-                        this.$message.error("Register failed.");
-                      }
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                      this.$message.error(
-                        "Register failed or verification did not pass."
-                      );
-                      this.uploading = false;
-                    });
-                }
-
-                // post request for health worker registration
-                if (form.getFieldValue("role") === "2") {
-                  let data = {
-                    name: form.getFieldValue("fullname"),
-                    mail: form.getFieldValue("email"),
-                    password: form.getFieldValue("password"),
-                    verificationCode: form.getFieldValue("optional"),
-                    roleId: form.getFieldValue("role"),
-                    birthday: "",
-                  };
-
-                  this.$store
-                    .dispatch("register", data)
-                    .then((res) => {
-                      this.uploading = false;
-                      if (res.data.success) {
-                        this.$router.push("/user/login");
-                      } else if (res.data.code === 30016) {
-                        this.$message.error("Verification did not pass.");
-                      } else {
-                        console.log(res.data.code);
-                        this.$message.error("Register failed.");
-                      }
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                      this.$message.error(
-                        "Register failed or verification did not pass."
-                      );
-                      this.uploading = false;
-                    });
-                }
-
-                // post request for project owner registration
-                if (form.getFieldValue("role") === "3") {
-                  let data = {
-                    name: form.getFieldValue("fullname"),
-                    mail: form.getFieldValue("email"),
-                    password: form.getFieldValue("password"),
-                    verificationCode: form.getFieldValue("optional"),
-                    roleId: form.getFieldValue("role"),
-                    birthday: "",
-                  };
-
-                  this.$store
-                    .dispatch("register", data)
-                    .then((res) => {
-                      this.uploading = false;
-                      if (res.data.success) {
-                        this.$router.push("/user/login");
-                      } else if (res.data.code === 30016) {
-                        this.$message.error("Verification did not pass.");
-                      } else {
-                        console.log(res.data.code);
-                        this.$message.error("Register failed.");
-                      }
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                      this.$message.error(
-                        "Register failed or verification did not pass."
-                      );
-                      this.uploading = false;
-                    });
-                }
-
-                // post request for admin registration
-                if (form.getFieldValue("role") === "4") {
-                  let data = {
-                    name: form.getFieldValue("fullname"),
-                    mail: form.getFieldValue("email"),
-                    password: form.getFieldValue("password"),
-                    verificationCode: form.getFieldValue("optional"),
-                    roleId: form.getFieldValue("role"),
-                    birthday: "",
-                  };
-
-                  this.$store
-                    .dispatch("register", data)
-                    .then((res) => {
-                      this.uploading = false;
-                      if (res.data.success) {
-                        this.$router.push("/user/login");
-                      } else if (res.data.code === 30016) {
-                        this.$message.error("Verification did not pass.");
-                      } else {
-                        console.log(res.data.code);
-                        this.$message.error("Register failed.");
-                      }
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                      this.$message.error(
-                        "Register failed or verification did not pass."
-                      );
-                      this.uploading = false;
-                    });
-                }
+                this.$message.error("Reset failed,Please try again.");
               }
             })
-            .catch((error) => {
-              console.log("Email checking failed.");
-              console.log(error);
-              this.uploading = false;
-              this.$message.error("Email checking failed.");
+            .catch((err) => {
+              console.log(err);
             });
         }
       });

@@ -111,6 +111,7 @@
                 Sign up
               </a-button>
             </a-form-item>
+            <a href="/login">Already have an account? Login</a>
           </div>
         </a-form>
       </div>
@@ -120,7 +121,7 @@
   </div>
 </template>
 <script>
-import Header from "../components/header.vue";
+import Header from "../components/homepage-headerlayout.vue";
 import axios from "axios";
 export default {
   components: {

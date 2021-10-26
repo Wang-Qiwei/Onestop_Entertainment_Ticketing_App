@@ -9,30 +9,26 @@
           Enter your user account's verified email address <br />We will send
           you a verification code
         </p>
-        <a-form-item>
-          <a-input
-            v-model="email"
-            placeholder="please input your email"
-          ></a-input>
 
-          <a-button @click="handleSubmit" class="but"
-            >Send verification code</a-button
-          >
-        </a-form-item>
-        <a-form-item>
-          <p class="info">Verification Code*</p>
-          <a-input class="code"></a-input>
-        </a-form-item>
-        <router-link to="/passreset">
-          <a-button class="verify">Verify</a-button></router-link
+        <a-input
+          v-model="email"
+          placeholder="please input your email"
+        ></a-input>
+
+        <a-button @click="handleSubmit" class="but"
+          >Send verification code</a-button
         >
+
+        <p class="info">Verification Code*</p>
+        <a-input v-model="code" class="code"></a-input>
+        <a-button @click="verify" class="verify">Verify</a-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Header from "../components/header.vue";
+import Header from "../components/homepage-headerlayout.vue";
 import axios from "axios";
 export default {
   components: {
@@ -40,7 +36,8 @@ export default {
   },
   data() {
     return {
-      email: this.email,
+      email: "",
+      code: "",
     };
   },
   // beforeCreate() {
@@ -50,17 +47,42 @@ export default {
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      console.log(this.email);
+
       axios({
         method: "post",
         url: "http://localhost:9999/elec5619/sys/sendEmailRequest",
-        email: this.email,
+        data: {
+          email: this.email,
+        },
       })
         .then((res) => {
           console.log(res.data);
 
           if (res.data.success === true) {
-            console.log("added the user to the contact list.");
+            console.log("Email has been sent to you");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    verify(e) {
+      e.preventDefault();
+
+      axios({
+        method: "get",
+        url: "http://localhost:9999/elec5619/sys/codeVerify",
+        params: { code: this.code },
+      })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.success === true) {
+            this.$router.push({
+              path: "/passreset",
+              query: {
+                email: this.email,
+              },
+            });
           }
         })
         .catch((err) => {

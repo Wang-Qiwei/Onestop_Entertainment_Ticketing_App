@@ -66,7 +66,7 @@
           </div>
         </a-form>
       </div>
-
+      <a-button @click="test">test</a-button>
       <router-link to="/Register"
         ><p class="signin">Do not have an account? Sign up here</p></router-link
       >
@@ -76,7 +76,9 @@
 
 <script>
 import axios from "axios";
-import Header from "../components/header.vue";
+import Header from "../components/homepage-headerlayout.vue";
+
+import { mapMutations } from "vuex";
 export default {
   components: {
     Header,
@@ -85,6 +87,8 @@ export default {
     return {
       mail: "",
       password: "",
+
+      userToken: "",
     };
   },
   beforeCreate() {
@@ -92,7 +96,19 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["changeLogin"]),
+    test() {
+      axios
+        .post("http://localhost:9999/elec5619/test/test")
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     handleSubmit(e) {
+      // let _this = this;
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
@@ -102,8 +118,17 @@ export default {
               mail: this.form.getFieldValue("mail"),
               password: this.form.getFieldValue("password"),
             })
+
             .then((res) => {
-              // this.$store.commit("setToken", res.data.Authorization);
+              console.log("token", res.data.data.Authorization);
+              const token = res.data.data.Authorization;
+              localStorage.setItem("token", token);
+              axios.defaults.headers.common["Authorization"] = token;
+              // _this.changeLogin({ Authorization: res.data.Authorization });
+              // this.$store.commit(
+              //   "mutations/changeLogin",
+              //   res.data.data.Authorization
+              // );
               // if (store.state.token) {
               //   this.$router.push("./homepage");
               // }
@@ -111,7 +136,7 @@ export default {
                 console.log("added the user to the contact list.");
                 this.$router.push("/homepage");
                 this.$message.success("Login Successed");
-              } else {
+              } else if (res.data.success === false) {
                 this.$message.error(
                   "Your email or password is incorrect. Please try again."
                 );

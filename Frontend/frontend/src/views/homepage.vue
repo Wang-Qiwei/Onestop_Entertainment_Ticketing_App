@@ -1,229 +1,201 @@
 <template>
   <div id="container">
-    <head lang="en">
+    <div class="header">
       <title>Tok-Tickets</title>
-    </head>
-    <body>
-      <header>
-        <div class="header-inner">
-          <router-link to="/homepage">
-            <img class="img" src="../assets/img/normal_u2.png" alt="" />
-          </router-link>
-          <router-link
-            to="/homepage"
-            class="h-p"
-            style="font-family: fantasy; color: white"
-            >Tok-Tickets
-          </router-link>
-            <Select v-model="model1" class="h-city header-li-wh">
-              <Option
-                v-for="item in cityList"
-                :value="item.value"
-                :key="item.value"
-                >{{ item.label }}</Option
-              >
-            </Select>
-          <nav>
-            <ul>
-              <li><a href="index.html" class="header-li-wh">Home</a></li>
-              <li><a href="musical.html" class="header-li-wh">Musical</a></li>
-              <li><a href="festival.html" class="header-li-wh">Festival</a></li>
-              <li><a href="concert.html" class="header-li-wh">Concert</a></li>
-            </ul>
-          </nav>
-          <form action="" target="_blank">
-            <input
-              type="search"
-              class="header-search"
-              maxlength="64px"
-              placeholder="Search..."
-            />
-            <input type="submit" value="" />
-          </form>
-
-          <div class="h-user-info">
-            <router-link to="/login" class="header-li-wh">
-              <img src="../assets/img/imgPC-header/avatar.png" />
-              <span></span>
-              <p>Login</p>
-            </router-link>
-          </div>
+      <div class="header-inner">
+        <router-link to="/homepage">
+          <img class="img" src="../assets/img/normal_u2.png" alt="" />
+        </router-link>
+        <router-link
+          to="/homepage"
+          class="h-p"
+          style="font-family: fantasy; color: white"
+          >Tok-Tickets
+        </router-link>
+        <a-select placeholder="Sydney" class="city">
+          <a-select-option :value="0">Sydney</a-select-option>
+          <a-select-option :value="1">Melbourne）</a-select-option>
+          <a-select-option :value="2">Canberra</a-select-option>
+          <a-select-option :value="3">Brisbane</a-select-option>
+        </a-select>
+        <div class="classification">
+          <a href="index.html" class="header-li-wh">Home</a>
+          <a href="musical.html" class="header-li-wh">Musical</a>
+          <a href="festival.html" class="header-li-wh">Festival</a>
+          <a href="concert.html" class="header-li-wh">Concert</a>
         </div>
-      </header>
+        <form action="" target="_blank">
+          <input
+            type="search"
+            class="header-search"
+            maxlength="64px"
+            placeholder="Search..."
+          />
+          <input type="submit" value="" />
+        </form>
 
-      <div id="main_div">
-        <a-carousel autoplay>
-          <div>
-            <img
-              class="carouslpic"
-              src="../assets/img/post.png"
-              width="100%"
-              height="100%"
-            />
-          </div>
-          <div>
-            <img
-              class="carouslpic"
-              src="../assets/img/u113.png"
-              width="100%"
-              height="600"
-            />
-          </div>
-        </a-carousel>
-      </div>
-
-      <section>
-        <div class="section-left">
-          <ul>
-            <li style="margin-top: 15px; margin-bottom: -15px">
-              Currently showing (55)
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="info.html">
-                <img src="../assets/img/u103.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME1</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-            <li>
-              <a href="">
-                <img src="../assets/img/u104.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME2</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-            <li>
-              <a href="info.html">
-                <img src="../assets/img/u105.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME1</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-            <li>
-              <a href="info.html">
-                <img src="../assets/img/u106.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME1</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="info.html">
-                <img src="../assets/img/u116.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME1</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-            <li>
-              <a href="info.html">
-                <img src="../assets/img/u117.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME1</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-            <li>
-              <a href="info.html">
-                <img src="../assets/img/u118.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME1</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-            <li>
-              <a href="info.html">
-                <img src="../assets/img/u128.png" alt="" />
-              </a>
-              <ul class="pic-txt">
-                <li>NAME1</li>
-                <li><i>2021-10-01</i></li>
-              </ul>
-
-              <div>
-                <router-link to="/buyticket">BUY TICKETS</router-link>
-              </div>
-            </li>
-          </ul>
+        <div class="h-user-info">
+          <router-link to="/login">
+            <img class="avatar" src="../assets/img/imgPC-header/avatar.png" />
+            <span class="wtf"></span>
+            <p class="avap">Login</p>
+          </router-link>
         </div>
-      </section>
-      <div class="footer">
-        <p>COMP 5619 - Group 10</p>
       </div>
-    </body>
+    </div>
+    <div id="main_div">
+      <a-carousel autoplay>
+        <div>
+          <img class="carouslpic" src="../assets/img/post.png" />
+        </div>
+        <div>
+          <img class="carouslpic" src="../assets/img/u113.png" />
+        </div>
+      </a-carousel>
+    </div>
+
+    <div
+      class="cardcontainer"
+      style="background-color: #ececec; padding: 20px;"
+    >
+      <a-row type="flex" justify="center" align="middle" :gutter="16">
+        <a-col :span="8" v-for="item in mdata" :key="item.id">
+          <a-card
+            bordered
+            class="card"
+            hoverable
+            style="width:330px; height:470px;"
+          >
+            <img
+              slot="cover"
+              style="width:100%; height:400px;"
+              :src="item.link"
+            />
+            <a-card-meta>
+              <template slot="description">
+                <a class="cardbut">BUY</a>
+              </template>
+            </a-card-meta>
+          </a-card>
+        </a-col>
+      </a-row>
+    </div>
+
+    <div class="footer">
+      <p>COMP 5619 - Group 10</p>
+    </div>
   </div>
 </template>
-
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
+      mdata: [
+        {
+          title: "shit1",
+          date: "2020-10-21",
+          link:
+            "https://d1icd6shlvmxi6.cloudfront.net/gsc/BVLB1W/9c/ac/32/9cac324022f845749db540f71d56061a/images/_musical/u28.png?token=fe363e720bdbb816deaf252d421fcf6173898060543b80268f1cb8d870acfd4a&pageId=46cbbccf-7575-4509-98c7-dcb36db09f16",
+        },
+        {
+          title: "shit2",
+          date: "2020-10-21",
+          link:
+            "https://d1icd6shlvmxi6.cloudfront.net/gsc/BVLB1W/9c/ac/32/9cac324022f845749db540f71d56061a/images/_musical/u29.png?token=74c8c293c7b4a427ab45acccac1afde2a5c677e25e1cbe70e7559c9dd8f8f854&pageId=46cbbccf-7575-4509-98c7-dcb36db09f16",
+        },
+        {
+          title: "shit3",
+          link: "../assets/img/u118.png",
+          date: "2020-10-21",
+        },
+        {
+          title: "shit1",
+          link: "/src/assets/img/u116.png",
+          date: "2020-10-21",
+        },
+        {
+          title: "shit2",
+          link: "../assets/img/u117.png",
+          date: "2020-10-21",
+        },
+        {
+          title: "shit3",
+          link: "../assets/img/u118.png",
+          date: "2020-10-21",
+        },
+      ],
       cityList: [
         {
-          value: "Sydney",
+          value: "0",
           label: "Sydney",
         },
         {
-          value: "Melbourne",
+          value: "1",
           label: "Melbourne",
         },
         {
-          value: "Canberra",
+          value: "2",
           label: "Canberra",
         },
         {
-          value: "Brisbane",
+          value: "3",
           label: "Brisbane",
         },
       ],
-      model1: "",
+      email: "",
+      code: "",
     };
+  },
+
+  methods: {
+    init() {
+      axios({
+        method: "post",
+        url: "http://localhost:9999/elec5619/main/list",
+        data: {
+          classification: this.classification,
+          limit: 20,
+          location: this.location,
+          offset: 0,
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.success === true) {
+            console.log(res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
+
 <style scoped>
+.card {
+  margin: 50px;
+  background: rgb(90, 24, 177);
+}
+.cardate {
+  position: absolute;
+  bottom: 50px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cardimg {
+  width: 100%;
+  height: 60%;
+}
+.cardbut {
+  color: white;
+  font-weight: bolder;
+  font-size: 17px;
+
+  background: rgb(90, 24, 177);
+}
 .ant-carousel >>> .slick-slide {
   text-align: center;
   height: 605px;
@@ -231,11 +203,22 @@ export default {
   background: #364d79;
   overflow: hidden;
 }
-
+.a-card {
+  display: inline-block;
+}
 .ant-carousel >>> .slick-slide h3 {
   color: #fff;
 }
-header {
+.carouslpic {
+  overflow: hidden;
+  height: 600px;
+  width: 100%;
+  bottom: 20px;
+  right: 10px;
+  color: #fff;
+}
+
+.header {
   background: rgb(90, 24, 177);
   width: 100%;
   height: 80px;
@@ -245,73 +228,75 @@ header {
   left: 0;
   z-index: 5;
 }
-header a {
+a {
   text-decoration: none;
   color: #d8d8d8;
 }
-header .header-inner {
+.header-inner {
   width: 1200px;
   height: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
-header .header-inner .header-li-wh {
-  width: 80px;
-  height: 80px;
+.header-li-wh {
+  margin: 10px;
+  width: 114px;
+  height: 36px;
+  font-weight: bold;
+  font-size: 16px;
 }
-header .header-inner .header-li-wh p {
+p {
   color: #d8d8d8;
 }
 
-header .header-inner img {
+img {
   width: 60px;
   height: 60px;
   margin-left: -15px;
 }
-header .header-inner .h-p {
+.h-p {
   width: 100px;
   height: 13px;
   font-size: 14px;
   margin-left: -24px;
 }
-header .header-inner .h-city {
-  height: 100%;
-  text-align: right;
+.city {
   line-height: 80px;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 0px solid transparent;
+  background: rgb(90, 24, 177);
+  margin: 0 10px;
   color: #d8d8d8;
   width: 100px;
 }
-header .header-inner .h-city:hover {
+.city:hover {
   outline: 1px solid #d8d8d8;
 }
-header .header-inner .h-city:hover span {
+.city:hover span {
   transform: rotateZ(180deg);
 }
-header .header-inner nav {
+.header-inner {
   margin-left: 40px;
 }
-header .header-inner nav ul {
+.header-inner nav ul {
   display: flex;
   text-align: center;
 }
-header .header-inner nav ul a {
+.header-inner nav ul a {
   display: inline-block;
   line-height: 80px;
 }
-header .header-inner nav ul a:hover {
+.header-inner nav ul a:hover {
   background: #9e6edd;
   color: #d8d8d8;
 }
 
-header .header-inner form {
+.header-inner form {
   position: relative;
 }
-header .header-inner form input[type="search"] {
+.header-search {
   display: inline-block;
+
   width: 478px;
   height: 40px;
   margin-left: 65px;
@@ -322,16 +307,7 @@ header .header-inner form input[type="search"] {
   border-radius: 30px;
   color: #333333;
 }
-header .header-inner form input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  position: relative;
-  height: 29px;
-  width: 28px;
-  content: "X";
-  border-radius: 50%;
-  /* background: url("../assets/img/imgPC-header/1520917472(1).png") no-repeat; */
-}
-header .header-inner form input[type="submit"] {
+.header-inner form input[type="submit"] {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -344,18 +320,16 @@ header .header-inner form input[type="submit"] {
   top: 0;
   right: 0;
 }
-header .header-inner .h-user-info a {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+.h-user-info {
+  display: inline-block;
+  position: absolute;
+  right: 30px;
 }
-header .header-inner .h-user-info a img {
+.avatar {
   width: 40px;
   height: 40px;
 }
-header .header-inner .h-user-info a span {
+.wtf {
   display: inline-block;
   margin-left: 5px;
   border-top: 4px solid #d8d8d8;
@@ -364,24 +338,13 @@ header .header-inner .h-user-info a span {
   border-left: 4px solid transparent;
   transition: 0.3s;
 }
-header .header-inner .h-user-info a p {
+.avap {
   opacity: 0;
   position: absolute;
   top: 80px;
   left: 20px;
   font-size: 14px;
   color: #d8d8d8;
-}
-header .header-inner .h-user-info a:hover {
-  outline: 1px solid #d8d8d8;
-}
-header .header-inner .h-user-info a:hover span {
-  transform: rotateZ(180deg);
-}
-header .header-inner .h-user-info a:hover p {
-  opacity: 1;
-  top: 60px;
-  transition: 0.2s;
 }
 
 #main_div {
@@ -392,36 +355,12 @@ header .header-inner .h-user-info a:hover p {
   background-image: linear-gradient(rgb(90, 24, 177), #9e6edd);
 }
 
-.carouslpic {
-  overflow: hidden;
-  bottom: 20px;
-  right: 10px;
-  color: #fff;
-}
-/* #main_div_img {
-    margin: 0;
-    padding: 0px;
-    }
-
-    #main_div_num li {
-    border: #fff solid 1px;
-    float: left;
-    margin: 0px 5px;
-    padding: 3px 10px;
-    } */
-.numsover {
-  background-color: rgb(90, 24, 177);
-  color: #fff;
-}
-
-section {
-  width: 100%;
+.cardcontainer {
   background-image: linear-gradient(
     rgba(88, 0, 170, 1),
     rgba(194, 128, 255, 1)
   );
-  display: flex;
-  justify-content: space-between;
+
   margin-bottom: 15px;
 }
 .section-left {
