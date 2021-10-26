@@ -568,7 +568,7 @@ label {
   height: 350px;
   position: relative;
   margin-top: 25px;
-  margin-left: 11%;
+  margin-left: 10%;
   border-top: 1px solid #d8d8d8;
   border-right: 1px solid #d8d8d8;
   border-bottom: 1px solid #d8d8d8;
