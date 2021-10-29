@@ -1,179 +1,275 @@
 <template>
   <div>
-    <body>
-      <header>
-        <div class="header-inner">
-          <router-link to="/homepage">
-            <img class="img" src="../assets/img/normal_u2.png" alt="" />
-          </router-link>
-          <router-link
-            to="/homepage"
-            class="h-p"
-            style="font-family: fantasy; color: white"
-            >Tok-Tickets
-          </router-link>
-
-          <Select v-model="model1" class="h-city header-li-wh">
-            <Option
-              v-for="item in cityList"
-              :value="item.value"
-              :key="item.value"
-              >{{ item.label }}</Option
-            >
-          </Select>
-          <nav>
-            <ul>
-              <li><router-link to="/homepage"><a class="header-li-wh">Home</a></router-link></li>
-              <li><a href="musical.html" class="header-li-wh">Musical</a></li>
-              <li><a href="festival.html" class="header-li-wh">Festival</a></li>
-              <li><a href="concert.html" class="header-li-wh">Concert</a></li>
-            </ul>
-          </nav>
-          <form action="" target="_blank">
-            <input
-              type="search"
-              class="header-search"
-              maxlength="64px"
-              placeholder="Search..."
-            />
-            <input type="submit" value="" />
-          </form>
-
-          <div class="h-user-info">
-            <router-link to="/login" class="header-li-wh">
-              <img src="../assets/img/imgPC-header/avatar.png" />
-              <span></span>
-              <p>Login</p>
-            </router-link>
-          </div>
+    <div class="header">
+      <title>Tok-Tickets</title>
+      <div class="header-inner">
+        <router-link to="/homepage">
+          <img class="img" src="../assets/img/normal_u2.png" alt="" />
+        </router-link>
+        <router-link
+          to="/homepage"
+          class="h-p"
+          style="font-family: fantasy; color: white"
+          >Tok-Tickets
+        </router-link>
+        <div class="classification">
+          <a href="index.html" class="header-li-wh">Home</a>
         </div>
-      </header>
-      <div class="container">
-        <div class="top">
-          <div class="left">
-            <img src="../assets/img/u103.png" alt="" />
-            <div>
-              <h1>Name</h1>
-              <p>Money</p>
-              <p>Subject</p>
-              <p>Location,/120min</p>
-              <p>2021-10-01 Sydney Release</p>
-              <div class="interior">
-                <a class="dialog" href="#open-modal">
-                  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;BUY TICKETS &nbsp;
-                  &nbsp;&nbsp; &nbsp; &nbsp;</a
-                >
-              </div>
-              <div id="open-modal" class="modal-window">
-                <div>
-                  <a href="#" title="Close" class="modal-close">Close</a>
-                  <!-- <h1>BUY TICKETS</h1> -->
-                  <form>
-                    <div class="group">
-                      <img src="../assets/img/alipay.jpeg" alt="" />
-                      <h1>
-                        <span style="color: grey; font-family: Times New Roman"
-                          >Amount: </span
-                        ><b style="font-family: Times New Roman">100$</b>
-                      </h1>
-                      <h1>
-                        <span style="color: grey; font-family: Times New Roman"
-                          >Order: 198555</span
-                        >
-                      </h1>
-                      <h1>
-                        <span style="color: grey; font-family: Times New Roman"
-                          >Description: Alipay Payment</span
-                        >
-                      </h1>
-                      <div class="payqr">
-                        <img src="../assets/img/payqr.png" alt="" />
-                      </div>
+
+        <div class="h-user-info">
+          <router-link to="/login">
+            <img class="avatar" src="../assets/img/imgPC-header/avatar.png" />
+            <span class="wtf"></span>
+            <p class="avap">Login</p>
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="top">
+        <div class="left">
+          <img class="bic" :src="url" alt="" />
+          <div>
+            <h1>
+              Name:
+              <p class="tit">{{ this.title }}</p>
+            </h1>
+            <h1>
+              Price:
+              <p class="tit">{{ this.price + "$" }}</p>
+            </h1>
+            <h1>
+              Subject:
+              <p></p>
+            </h1>
+            <h1>
+              Address:
+              <p class="tit">{{ this.address }}</p>
+            </h1>
+            <h1>
+              <p class="tit">{{ this.time }}</p>
+            </h1>
+            <div class="interior">
+              <a class="dialog" href="#open-modal">
+                &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;BUY TICKETS &nbsp; &nbsp;&nbsp;
+                &nbsp; &nbsp;</a
+              >
+            </div>
+            <div id="open-modal" class="modal-window">
+              <div>
+                <a href="#" title="Close" class="modal-close">Close</a>
+                <form>
+                  <div class="group">
+                    <img src="../../static/img/alipay.jpeg" alt="" />
+                    <h1>
+                      <span style="color: grey; font-family: Times New Roman"
+                        >Amount: </span
+                      ><b style="font-family: Times New Roman">{{
+                        this.price + "$"
+                      }}</b>
+                    </h1>
+                    <h1>
+                      <span style="color: grey; font-family: Times New Roman"
+                        >Order: 198555</span
+                      >
+                    </h1>
+                    <h1>
+                      <span style="color: grey; font-family: Times New Roman"
+                        >Description: Alipay Payment</span
+                      >
+                    </h1>
+                    <div class="payqr">
+                      <img
+                        class="alipay"
+                        src="../../static/img/payqr.png"
+                        alt=""
+                      />
                     </div>
-                  </form>
-                </div>
+                    <router-link to="/my"
+                      ><a-button class="payment" @click="buy"
+                        >Payment Finished</a-button
+                      ></router-link
+                    >
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="container2">
-        <div class="segmentation"></div>
-        <div class="description">
-          <h2>DESCRIPTION</h2>
+    </div>
+    <div class="container2">
+      <div class="segmentation"></div>
+      <div class="description">
+        <h2>DESCRIPTION</h2>
+        <p class="txt">
+          {{ this.content }}
+        </p>
+      </div>
+      <br />
+      <div class="segmentation"></div>
+      <div class="roles">
+        <h2>PERFORMERS</h2>
+        <div class="roles_line">
+          <img :src="performurl" alt="" />
           <p class="txt">
-            Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Adipisci autem consectetur corporis
-            culpa deleniti dolores mollitia perferendis, perspiciatis sint sunt
-            suscipit ullam, vel voluptatibus. Aperiam laboriosam mollitia optio
-            reiciendis. Labore nihil quo sed. Culpa earum hic ipsa, libero
-            magnam sed? Dignissimos dolores fugit labore modi quas quasi
-            reiciendis ut voluptates.
+            {{ this.performers }}
           </p>
         </div>
         <br />
-        <div class="segmentation"></div>
-        <div class="roles">
-          <h2>PERFORMERS</h2>
-          <div class="roles_line">
-            <img src="../assets/img/roles.jpeg" alt="" />
-            <p class="txt">
-              Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit
-              amet, consectetur adipisicing elit. Adipisci autem consectetur
-              corporis culpa deleniti dolores mollitia perferendis, perspiciatis
-              sint sunt suscipit ullam, vel voluptatibus. Aperiam laboriosam
-              mollitia optio reiciendis. Labore nihil quo sed. Culpa earum hic
-              ipsa, libero magnam sed? Dignissimos dolores fugit labore modi
-              quas quasi reiciendis ut voluptates.Lorem ipsum dolor sit amet,
-              consectetur. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Adipisci autem consectetur corporis culpa deleniti dolores
-              mollitia perferendis, perspiciatis sint sunt suscipit ullam, vel
-              voluptatibus. Aperiam laboriosam mollitia optio reiciendis. Labore
-              nihil quo sed. Culpa earum hic ipsa, libero magnam sed?
-              Dignissimos dolores fugit labore modi quas quasi reiciendis ut
-              voluptates.
-            </p>
-          </div>
-          <br />
-        </div>
-        <!-- <div class="segmentation"></div> -->
       </div>
+      <!-- <div class="segmentation"></div> -->
+    </div>
 
-      <div class="footer">
-        <p>COMP 5619 - Group 10</p>
-      </div>
-    </body>
+    <div class="footer">
+      <p>COMP 5619 - Group 10</p>
+    </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      id: 0,
+      email: "",
+      mdata: [],
+      title: "",
+      price: "",
+      location: "",
+      time: "",
+      content: "",
+      performers: "",
+      url: "",
+      performurl: "",
       cityList: [
         {
-          value: "Sydney",
+          value: "0",
           label: "Sydney",
         },
         {
-          value: "Melbourne",
+          value: "1",
           label: "Melbourne",
         },
         {
-          value: "Canberra",
+          value: "2",
           label: "Canberra",
         },
         {
-          value: "Brisbane",
+          value: "3",
           label: "Brisbane",
         },
       ],
-      model1: "",
+
+      classification: "",
+
+      link: "",
     };
+  },
+  created() {
+    this.getParams();
+
+    (this.email = localStorage.getItem("email")), console.log(this.email);
+  },
+  methods: {
+    getParams() {
+      this.id = this.$route.query.data.id;
+      this.title = this.$route.query.data.title;
+      this.price = this.$route.query.data.price;
+      this.address = this.$route.query.data.address;
+      this.time = this.$route.query.data.meetingstartdate;
+      this.content = this.$route.query.data.content;
+      this.url = this.$route.query.data.posterurl;
+      this.performers = this.$route.query.data.performersDesc;
+      this.performurl = this.$route.query.data.performers;
+    },
+    buy() {
+      axios({
+        method: "post",
+        url: "http://localhost:9999/elec5619/main/buy",
+        data: {
+          commodityid: this.id,
+          email: this.email,
+        },
+      })
+        .then(() => {
+          this.$message.success("Payment Successed");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
 <style scoped>
-header {
+.alipay {
+  margin: 0 auto;
+}
+.payment {
+  color: #73d8ff;
+  font-size: 18px;
+  border: transparent;
+  position: absolute;
+  margin-top: 20px;
+  left: 30%;
+}
+.bic {
+  width: 269px;
+  height: 352px;
+}
+.tit {
+  margin-left: 5px;
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+}
+.card {
+  margin: 50px;
+  background: rgb(90, 24, 177);
+}
+.cardate {
+  position: absolute;
+  bottom: 50px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cardimg {
+  width: 100%;
+  height: 60%;
+}
+.cardbut {
+  color: white;
+  font-weight: bolder;
+  font-size: 17px;
+
+  background: rgb(90, 24, 177);
+}
+.ant-carousel >>> .slick-slide {
+  text-align: center;
+  height: 605px;
+  line-height: 605px;
+  background: #364d79;
+  overflow: hidden;
+}
+.a-card {
+  display: inline-block;
+}
+.ant-carousel >>> .slick-slide h3 {
+  color: #fff;
+}
+.carouslpic {
+  overflow: hidden;
+  height: 600px;
+  width: 100%;
+  bottom: 20px;
+  right: 10px;
+  color: #fff;
+}
+
+.header {
   background: rgb(90, 24, 177);
   width: 100%;
   height: 80px;
@@ -183,71 +279,75 @@ header {
   left: 0;
   z-index: 5;
 }
-header a {
+a {
   text-decoration: none;
   color: #d8d8d8;
 }
-header .header-inner {
+.header-inner {
   width: 1200px;
   height: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
-header .header-inner .header-li-wh {
-  width: 80px;
-  height: 80px;
+.header-li-wh {
+  margin: 10px;
+  width: 114px;
+  height: 36px;
+  font-weight: bold;
+  font-size: 16px;
 }
-header .header-inner .header-li-wh p {
+p {
   color: #d8d8d8;
 }
-header .header-inner img {
+
+img {
   width: 60px;
   height: 60px;
   margin-left: -15px;
 }
-header .header-inner .h-p {
+.h-p {
   width: 100px;
   height: 13px;
   font-size: 14px;
   margin-left: -24px;
 }
-header .header-inner .h-city {
-  height: 100%;
-  text-align: right;
+.city {
   line-height: 80px;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 0px solid transparent;
+  background: rgb(90, 24, 177);
+  margin: 0 10px;
   color: #d8d8d8;
   width: 100px;
 }
-header .header-inner .h-city:hover {
+.city:hover {
   outline: 1px solid #d8d8d8;
 }
-header .header-inner .h-city:hover span {
+.city:hover span {
   transform: rotateZ(180deg);
 }
-header .header-inner nav {
+.header-inner {
   margin-left: 40px;
 }
-header .header-inner nav ul {
+.header-inner nav ul {
   display: flex;
   text-align: center;
 }
-header .header-inner nav ul a {
+.header-inner nav ul a {
   display: inline-block;
   line-height: 80px;
 }
-header .header-inner nav ul a:hover {
+.header-inner nav ul a:hover {
   background: #9e6edd;
   color: #d8d8d8;
 }
-header .header-inner form {
+
+.header-inner form {
   position: relative;
 }
-header .header-inner form input[type="search"] {
+.header-search {
   display: inline-block;
+
   width: 478px;
   height: 40px;
   margin-left: 65px;
@@ -258,16 +358,7 @@ header .header-inner form input[type="search"] {
   border-radius: 30px;
   color: #333333;
 }
-header .header-inner form input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  position: relative;
-  height: 29px;
-  width: 28px;
-  content: "X";
-  border-radius: 50%;
-  /* background: url("../assets/img/imgPC-header/1520917472(1).png") no-repeat; */
-}
-header .header-inner form input[type="submit"] {
+.header-inner form input[type="submit"] {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -280,18 +371,16 @@ header .header-inner form input[type="submit"] {
   top: 0;
   right: 0;
 }
-header .header-inner .h-user-info a {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+.h-user-info {
+  display: inline-block;
+  position: absolute;
+  right: 30px;
 }
-header .header-inner .h-user-info a img {
+.avatar {
   width: 40px;
   height: 40px;
 }
-header .header-inner .h-user-info a span {
+.wtf {
   display: inline-block;
   margin-left: 5px;
   border-top: 4px solid #d8d8d8;
@@ -300,24 +389,13 @@ header .header-inner .h-user-info a span {
   border-left: 4px solid transparent;
   transition: 0.3s;
 }
-header .header-inner .h-user-info a p {
+.avap {
   opacity: 0;
   position: absolute;
   top: 80px;
   left: 20px;
   font-size: 14px;
   color: #d8d8d8;
-}
-header .header-inner .h-user-info a:hover {
-  outline: 1px solid #d8d8d8;
-}
-header .header-inner .h-user-info a:hover span {
-  transform: rotateZ(180deg);
-}
-header .header-inner .h-user-info a:hover p {
-  opacity: 1;
-  top: 60px;
-  transition: 0.2s;
 }
 .container {
   position: relative;
@@ -564,8 +642,8 @@ label {
   }
 }
 .payqr {
-  width: 350px;
-  height: 350px;
+  /* width: 350px;
+  height: 350px; */
   position: relative;
   margin-top: 25px;
   margin-left: 10%;
@@ -582,6 +660,7 @@ label {
   width: 100%;
   background: rgba(194, 128, 255, 1);
 }
+
 .segmentation {
   width: 84%;
   margin-left: 7%;

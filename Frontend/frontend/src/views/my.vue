@@ -1,140 +1,70 @@
 <template>
   <div>
-    <body>
-      <header>
-        <div class="header-inner">
-          <router-link to="/homepage">
-            <img class="img" src="../assets/img/normal_u2.png" alt="" />
-          </router-link>
-          <router-link
-            to="/homepage"
-            class="h-p"
-            style="font-family: fantasy; color: white"
-            >Tok-Tickets
-          </router-link>
+    <div class="header">
+      <title>Tok-Tickets</title>
+      <div class="header-inner">
+        <router-link to="/homepage">
+          <img class="img" src="../assets/img/normal_u2.png" alt="" />
+        </router-link>
+        <router-link
+          to="/homepage"
+          class="h-p"
+          style="font-family: fantasy; color: white"
+          >Tok-Tickets
+        </router-link>
 
-          <Select v-model="model1" class="h-city header-li-wh">
-            <Option
-              v-for="item in cityList"
-              :value="item.value"
-              :key="item.value"
-              >{{ item.label }}</Option
-            >
-          </Select>
-          <nav>
-            <ul>
-              <li><router-link to="/homepage"><a class="header-li-wh">Home</a></router-link></li>
-              <li><a href="musical.html" class="header-li-wh">Musical</a></li>
-              <li><a href="festival.html" class="header-li-wh">Festival</a></li>
-              <li><a href="concert.html" class="header-li-wh">Concert</a></li>
-            </ul>
-          </nav>
-          <form action="" target="_blank">
-            <input
-              type="search"
-              class="header-search"
-              maxlength="64px"
-              placeholder="Search..."
-            />
-            <input type="submit" value="" />
-          </form>
+        <div class="classification">
+          <a href="/homepage" class="header-li-wh">Home</a>
+        </div>
 
-          <div class="h-user-info">
-            <router-link to="/login" class="header-li-wh">
-              <img src="../assets/img/imgPC-header/avatar.png" />
-              <span></span>
-              <p>Login</p>
-            </router-link>
-          </div>
+        <div class="h-user-info">
+          <router-link to="/login">
+            <img class="avatar" :src="avataurl" />
+            <span class="wtf"></span>
+            <p class="avap">Login</p>
+          </router-link>
         </div>
-      </header>
-      <div class="container">
-        <div class="user_info">
-          <img src="../assets/img/imgPC-header/avatar.png" />
-          <h2>User Name</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Adipisci autem consectetur corporis
-            culpa deleniti dolores mollitia perferendis, perspiciatis sint sunt
-            suscipit ullam, vel voluptatibus. Aperiam laboriosam mollitia optio
-            reiciendis.
-          </p>
-          <div class="interior">
-            <a class="dialog" href="#open-modal">Edit Profile -></a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="user_info">
+        <img :src="avataurl" />
+        <h2>{{ name }}</h2>
+      </div>
+      <div class="ticket_info">
+        <h2 style="text-align: left; margin-left: 5%">MY TICKETS</h2>
+
+        <div class="tickets_list" v-for="item in this.data" :key="item.id">
+          <img :src="posterurl" alt="" />
+          <div class="info">
+            <h2>Name: {{ name }}</h2>
+            <h2>Time: {{ time }}</h2>
+            <h2>Location: {{ address }}</h2>
           </div>
-          <div id="open-modal" class="modal-window">
-            <div>
-              <a href="#" title="Close" class="modal-close">Close</a>
-              <h1>Edit Profile</h1>
-              <form>
-                <div class="group">
-                  <input type="text" required />
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label>New User Name</label>
-                </div>
-                <div class="group">
-                  <input type="text" required />
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label>New Description</label>
-                </div>
-              </form>
-              <a href="#" title="Close" class="save-close">SAVE</a>
-            </div>
-          </div>
-        </div>
-        <div class="ticket_info">
-          <h2 style="text-align: left; margin-left: 5%">MY TICKETS</h2>
-          <div class="tickets_list">
-            <img src="../assets/img/u103.png" alt="" />
-            <div class="info">
-              <h2>Name: XXXXX</h2>
-              <h2>Time: 2021-10-01</h2>
-              <h2>Location: SYDNEY OPERA HOUSE</h2>
-            </div>
-            <div class="qr">
-              <h3>State: Incoming</h3>
-              <img src="../assets/img/qr.png" alt="" />
-            </div>
-          </div>
-          <div class="tickets_list">
-            <img src="../assets/img/u104.png" alt="" />
-            <div class="info">
-              <h2>Name: XXXXX</h2>
-              <h2>Time: 2021-10-01</h2>
-              <h2>Location: SYDNEY OPERA HOUSE</h2>
-            </div>
-            <div class="qr">
-              <h3>State: Incoming</h3>
-              <img src="../assets/img/qr.png" alt="" />
-            </div>
-          </div>
-          <div class="tickets_list">
-            <img src="../assets/img/u106.png" alt="" />
-            <div class="info">
-              <h2>Name: XXXXX</h2>
-              <h2>Time: 2021-10-01</h2>
-              <h2>Location: SYDNEY OPERA HOUSE</h2>
-            </div>
-            <div class="qr">
-              <h3>State: Incoming</h3>
-              <img src="../assets/img/qr.png" alt="" />
-            </div>
+          <div class="qr">
+            <h3>State: Incoming</h3>
+            <img src="../assets/img/qr.png" alt="" />
           </div>
         </div>
       </div>
-      <div class="footer">
-        <p>COMP 5619 - Group 10</p>
-      </div>
-    </body>
+    </div>
+    <div class="footer">
+      <p>COMP 5619 - Group 10</p>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      email: "",
+      name: "",
+      desc: "",
+      data: [],
+      avataurl: require("../assets/img/my/u195.png"),
       cityList: [
         {
           value: "Sydney",
@@ -156,11 +86,39 @@ export default {
       model1: "",
     };
   },
+  created() {
+    (this.email = localStorage.getItem("email")), console.log(this.email);
+    this.my();
+  },
+  methods: {
+    my() {
+      axios({
+        method: "post",
+        url: "http://localhost:9999/elec5619/main/personalCenter",
+        data: { email: this.email },
+      })
+        .then((res) => {
+          console.log(res.data.data);
+          let mydata = res.data.data;
+          this.name = mydata.name;
+          this.data = mydata.tickets;
+          for (let i in this.data) {
+            this.name = this.data[i].name;
+            this.posterurl = this.data[i].postURL;
+            this.time = this.data[i].time;
+            this.address = this.data[i].address;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
 <style scoped>
-header {
+.header {
   background: rgb(90, 24, 177);
   width: 100%;
   height: 80px;
@@ -170,71 +128,75 @@ header {
   left: 0;
   z-index: 5;
 }
-header a {
+a {
   text-decoration: none;
   color: #d8d8d8;
 }
-header .header-inner {
+.header-inner {
   width: 1200px;
   height: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
-header .header-inner .header-li-wh {
-  width: 80px;
-  height: 80px;
+.header-li-wh {
+  margin: 10px;
+  width: 114px;
+  height: 36px;
+  font-weight: bold;
+  font-size: 16px;
 }
-header .header-inner .header-li-wh p {
+p {
   color: #d8d8d8;
 }
-header .header-inner img {
+
+img {
   width: 60px;
   height: 60px;
   margin-left: -15px;
 }
-header .header-inner .h-p {
+.h-p {
   width: 100px;
   height: 13px;
   font-size: 14px;
   margin-left: -24px;
 }
-header .header-inner .h-city {
-  height: 100%;
-  text-align: right;
+.city {
   line-height: 80px;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 0px solid transparent;
+  background: rgb(90, 24, 177);
+  margin: 0 10px;
   color: #d8d8d8;
-  width: 100px;
+  width: 300px;
 }
-header .header-inner .h-city:hover {
+.city:hover {
   outline: 1px solid #d8d8d8;
 }
-header .header-inner .h-city:hover span {
+.city:hover span {
   transform: rotateZ(180deg);
 }
-header .header-inner nav {
+.header-inner {
   margin-left: 40px;
 }
-header .header-inner nav ul {
+.header-inner nav ul {
   display: flex;
   text-align: center;
 }
-header .header-inner nav ul a {
+.header-inner nav ul a {
   display: inline-block;
   line-height: 80px;
 }
-header .header-inner nav ul a:hover {
+.header-inner nav ul a:hover {
   background: #9e6edd;
   color: #d8d8d8;
 }
-header .header-inner form {
+
+.header-inner form {
   position: relative;
 }
-header .header-inner form input[type="search"] {
+.header-search {
   display: inline-block;
+
   width: 478px;
   height: 40px;
   margin-left: 65px;
@@ -245,16 +207,7 @@ header .header-inner form input[type="search"] {
   border-radius: 30px;
   color: #333333;
 }
-header .header-inner form input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  position: relative;
-  height: 29px;
-  width: 28px;
-  content: "X";
-  border-radius: 50%;
-  /* background: url("../assets/img/imgPC-header/1520917472(1).png") no-repeat; */
-}
-header .header-inner form input[type="submit"] {
+.header-inner form input[type="submit"] {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -267,18 +220,16 @@ header .header-inner form input[type="submit"] {
   top: 0;
   right: 0;
 }
-header .header-inner .h-user-info a {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+.h-user-info {
+  display: inline-block;
+  position: absolute;
+  right: 30px;
 }
-header .header-inner .h-user-info a img {
+.avatar {
   width: 40px;
   height: 40px;
 }
-header .header-inner .h-user-info a span {
+.wtf {
   display: inline-block;
   margin-left: 5px;
   border-top: 4px solid #d8d8d8;
@@ -287,24 +238,13 @@ header .header-inner .h-user-info a span {
   border-left: 4px solid transparent;
   transition: 0.3s;
 }
-header .header-inner .h-user-info a p {
+.avap {
   opacity: 0;
   position: absolute;
   top: 80px;
   left: 20px;
   font-size: 14px;
   color: #d8d8d8;
-}
-header .header-inner .h-user-info a:hover {
-  outline: 1px solid #d8d8d8;
-}
-header .header-inner .h-user-info a:hover span {
-  transform: rotateZ(180deg);
-}
-header .header-inner .h-user-info a:hover p {
-  opacity: 1;
-  top: 60px;
-  transition: 0.2s;
 }
 .container {
   position: relative;
@@ -426,8 +366,10 @@ header .header-inner .h-user-info a:hover p {
   color: rgba(194, 128, 255, 1);
 }
 .group {
-  position: relative;
-  margin-bottom: 45px;
+  float: left;
+  width: 100%;
+  margin: 10px;
+  font-size: 16px;
 }
 .group > input {
   font-size: 18px;

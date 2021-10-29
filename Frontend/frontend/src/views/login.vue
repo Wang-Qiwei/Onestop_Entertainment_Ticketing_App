@@ -108,6 +108,7 @@ export default {
         });
     },
     handleSubmit(e) {
+      this.mail = this.form.getFieldValue("mail");
       // let _this = this;
       e.preventDefault();
       this.form.validateFields((err, values) => {
@@ -123,6 +124,7 @@ export default {
               console.log("token", res.data.data.Authorization);
               const token = res.data.data.Authorization;
               localStorage.setItem("token", token);
+              localStorage.setItem("email", this.mail);
               axios.defaults.headers.common["Authorization"] = token;
               // _this.changeLogin({ Authorization: res.data.Authorization });
               // this.$store.commit(

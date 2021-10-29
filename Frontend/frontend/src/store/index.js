@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     Authorization: localStorage.getItem("Authorization")
       ? localStorage.getItem("Authorization")
       : "",
+    email: localStorage.getItem("email") ? localStorage.getItem("email") : "",
   },
   mutations: {
     // 修改token，并将token存入localStorage

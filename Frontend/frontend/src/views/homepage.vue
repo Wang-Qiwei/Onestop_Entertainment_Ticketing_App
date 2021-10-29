@@ -4,7 +4,7 @@
       <title>Tok-Tickets</title>
       <div class="header-inner">
         <router-link to="/homepage">
-          <img class="img" src="../assets/img/normal_u2.png" alt="" />
+          <img class="img" src="@/assets/img/normal_u2.png" alt="" />
         </router-link>
         <router-link
           to="/homepage"
@@ -12,14 +12,18 @@
           style="font-family: fantasy; color: white"
           >Tok-Tickets
         </router-link>
-        <a-select placeholder="Sydney" class="city">
-          <a-select-option :value="0">Sydney</a-select-option>
-          <a-select-option :value="1">Melbourne）</a-select-option>
-          <a-select-option :value="2">Canberra</a-select-option>
-          <a-select-option :value="3">Brisbane</a-select-option>
+        <a-select
+          placeholder="Sydney"
+          v-model="location"
+          @change="init()"
+          class="city"
+        >
+          <a-select-option v-for="item in cityList" :key="item.value">{{
+            item.label
+          }}</a-select-option>
         </a-select>
         <div class="classification">
-          <a href="index.html" class="header-li-wh">Home</a>
+          <a href="/homepage" class="header-li-wh">Home</a>
           <a href="musical.html" class="header-li-wh">Musical</a>
           <a href="festival.html" class="header-li-wh">Festival</a>
           <a href="concert.html" class="header-li-wh">Concert</a>
@@ -36,7 +40,7 @@
 
         <div class="h-user-info">
           <router-link to="/login">
-            <img class="avatar" src="../assets/img/imgPC-header/avatar.png" />
+            <img class="avatar" src="@/assets/img/imgPC-header/avatar.png" />
             <span class="wtf"></span>
             <p class="avap">Login</p>
           </router-link>
@@ -46,10 +50,10 @@
     <div id="main_div">
       <a-carousel autoplay>
         <div>
-          <img class="carouslpic" src="../assets/img/post.png" />
+          <img class="carouslpic" src="@/assets/img/normal_u37.png" />
         </div>
         <div>
-          <img class="carouslpic" src="../assets/img/u113.png" />
+          <img class="carouslpic" src="@/assets/img/u113.png" />
         </div>
       </a-carousel>
     </div>
@@ -69,11 +73,13 @@
             <img
               slot="cover"
               style="width:100%; height:400px;"
-              :src="item.link"
+              :src="item.url"
             />
             <a-card-meta>
               <template slot="description">
-                <a class="cardbut">BUY</a>
+                <a-button class="cardbut" @click="detail(item.id)"
+                  >BUY</a-button
+                >
               </template>
             </a-card-meta>
           </a-card>
@@ -88,82 +94,89 @@
 </template>
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
-      mdata: [
-        {
-          title: "shit1",
-          date: "2020-10-21",
-          link:
-            "https://d1icd6shlvmxi6.cloudfront.net/gsc/BVLB1W/9c/ac/32/9cac324022f845749db540f71d56061a/images/_musical/u28.png?token=fe363e720bdbb816deaf252d421fcf6173898060543b80268f1cb8d870acfd4a&pageId=46cbbccf-7575-4509-98c7-dcb36db09f16",
-        },
-        {
-          title: "shit2",
-          date: "2020-10-21",
-          link:
-            "https://d1icd6shlvmxi6.cloudfront.net/gsc/BVLB1W/9c/ac/32/9cac324022f845749db540f71d56061a/images/_musical/u29.png?token=74c8c293c7b4a427ab45acccac1afde2a5c677e25e1cbe70e7559c9dd8f8f854&pageId=46cbbccf-7575-4509-98c7-dcb36db09f16",
-        },
-        {
-          title: "shit3",
-          link: "../assets/img/u118.png",
-          date: "2020-10-21",
-        },
-        {
-          title: "shit1",
-          link: "/src/assets/img/u116.png",
-          date: "2020-10-21",
-        },
-        {
-          title: "shit2",
-          link: "../assets/img/u117.png",
-          date: "2020-10-21",
-        },
-        {
-          title: "shit3",
-          link: "../assets/img/u118.png",
-          date: "2020-10-21",
-        },
-      ],
+      mdata: [],
+      bdata: [],
+      cnm: require("../assets/img/u128.png"),
+
       cityList: [
         {
-          value: "0",
+          value: 0,
           label: "Sydney",
         },
         {
-          value: "1",
+          value: 1,
           label: "Melbourne",
         },
         {
-          value: "2",
+          value: 2,
           label: "Canberra",
         },
         {
-          value: "3",
+          value: 3,
           label: "Brisbane",
         },
       ],
-      email: "",
-      code: "",
+
+      classification: "",
+      location: 0,
+      link: "",
     };
   },
-
+  created() {
+    this.init();
+  },
   methods: {
     init() {
       axios({
         method: "post",
         url: "http://localhost:9999/elec5619/main/list",
         data: {
-          classification: this.classification,
+          classification: 1,
           limit: 20,
           location: this.location,
           offset: 0,
         },
       })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data.data);
+          this.mdata = res.data.data;
+          for (let i in this.mdata) {
+            this.id = this.mdata[i].id;
+            this.link = this.mdata[i].url;
+          }
+          this.url = require("../assets/img/" + this.link);
+
           if (res.data.success === true) {
             console.log(res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    detail(id) {
+      axios({
+        method: "post",
+        url: "http://localhost:9999/elec5619/main/detail?id=" + id,
+        data: {
+          id: id.toString(),
+        },
+      })
+        .then((res) => {
+          console.log(res.data.data);
+          this.bdata = res.data.data;
+
+          if (res.data.success === true) {
+            this.$router.push({
+              path: "/buyticket",
+              query: {
+                data: this.bdata,
+              },
+            });
           }
         })
         .catch((err) => {
@@ -193,6 +206,7 @@ export default {
   color: white;
   font-weight: bolder;
   font-size: 17px;
+  border: none;
 
   background: rgb(90, 24, 177);
 }
@@ -267,7 +281,7 @@ img {
   background: rgb(90, 24, 177);
   margin: 0 10px;
   color: #d8d8d8;
-  width: 100px;
+  width: 300px;
 }
 .city:hover {
   outline: 1px solid #d8d8d8;
