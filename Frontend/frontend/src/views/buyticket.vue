@@ -39,10 +39,7 @@
               Price:
               <p class="tit">{{ this.price + "$" }}</p>
             </h1>
-            <h1>
-              Subject:
-              <p></p>
-            </h1>
+
             <h1>
               Address:
               <p class="tit">{{ this.address }}</p>
@@ -61,7 +58,7 @@
                 <a href="#" title="Close" class="modal-close">Close</a>
                 <form>
                   <div class="group">
-                    <img src="../../static/img/alipay.jpeg" alt="" />
+                    <img src="../assets/img/alipay.jpeg" alt="" />
                     <h1>
                       <span style="color: grey; font-family: Times New Roman"
                         >Amount: </span
@@ -82,7 +79,7 @@
                     <div class="payqr">
                       <img
                         class="alipay"
-                        src="../../static/img/payqr.png"
+                        src="../assets/img/payqr.png"
                         alt=""
                       />
                     </div>
@@ -112,7 +109,7 @@
       <div class="roles">
         <h2>PERFORMERS</h2>
         <div class="roles_line">
-          <img :src="performurl" alt="" />
+          <img class="perimg" :src="performurl" alt="" />
           <p class="txt">
             {{ this.performers }}
           </p>
@@ -205,6 +202,10 @@ export default {
 };
 </script>
 <style scoped>
+.perimg {
+  width: 230px;
+  height: 310px;
+}
 .alipay {
   margin: 0 auto;
 }

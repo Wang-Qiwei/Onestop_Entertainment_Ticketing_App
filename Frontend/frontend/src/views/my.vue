@@ -29,17 +29,17 @@
     <div class="container">
       <div class="user_info">
         <img :src="avataurl" />
-        <h2>{{ name }}</h2>
+        <h2>{{ username }}</h2>
       </div>
       <div class="ticket_info">
         <h2 style="text-align: left; margin-left: 5%">MY TICKETS</h2>
 
         <div class="tickets_list" v-for="item in this.data" :key="item.id">
-          <img :src="posterurl" alt="" />
+          <img :src="item.posterurl" />
           <div class="info">
-            <h2>Name: {{ name }}</h2>
-            <h2>Time: {{ time }}</h2>
-            <h2>Location: {{ address }}</h2>
+            <h2>Name: {{ item.name }}</h2>
+            <h2>Time: {{ item.time }}</h2>
+            <h2>Location: {{ item.address }}</h2>
           </div>
           <div class="qr">
             <h3>State: Incoming</h3>
@@ -63,7 +63,10 @@ export default {
       email: "",
       name: "",
       desc: "",
+      imgurl: [],
       data: [],
+      posterurl: "",
+      username: "",
       avataurl: require("../assets/img/my/u195.png"),
       cityList: [
         {
@@ -98,16 +101,17 @@ export default {
         data: { email: this.email },
       })
         .then((res) => {
-          console.log(res.data.data);
           let mydata = res.data.data;
-          this.name = mydata.name;
+          this.username = mydata.name;
           this.data = mydata.tickets;
           for (let i in this.data) {
             this.name = this.data[i].name;
             this.posterurl = this.data[i].postURL;
             this.time = this.data[i].time;
             this.address = this.data[i].address;
+            this.imgurl.push(this.posterurl);
           }
+          console.log("连接数组", this.imgurl);
         })
         .catch((err) => {
           console.log(err);

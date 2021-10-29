@@ -22,11 +22,24 @@
             item.label
           }}</a-select-option>
         </a-select>
+
         <div class="classification">
-          <a href="/homepage" class="header-li-wh">Home</a>
-          <a href="musical.html" class="header-li-wh">Musical</a>
-          <a href="festival.html" class="header-li-wh">Festival</a>
-          <a href="concert.html" class="header-li-wh">Concert</a>
+          <a-radio-group
+            class="radiogroup"
+            v-model="classification"
+            @change="init()"
+            size="small"
+          >
+            <a-radio-button class="header-li-wh" value="1">
+              Musical
+            </a-radio-button>
+            <a-radio-button class="header-li-wh" value="2">
+              Festival
+            </a-radio-button>
+            <a-radio-button class="header-li-wh" value="3">
+              Concert
+            </a-radio-button>
+          </a-radio-group>
         </div>
         <form action="" target="_blank">
           <input
@@ -50,10 +63,10 @@
     <div id="main_div">
       <a-carousel autoplay>
         <div>
-          <img class="carouslpic" src="@/assets/img/normal_u37.png" />
+          <img class="carouslpic" src="@/assets/img/22.png" />
         </div>
         <div>
-          <img class="carouslpic" src="@/assets/img/u113.png" />
+          <img class="carouslpic" src="@/assets/img/11.png" />
         </div>
       </a-carousel>
     </div>
@@ -121,7 +134,7 @@ export default {
         },
       ],
 
-      classification: "",
+      classification: 1,
       location: 0,
       link: "",
     };
@@ -135,7 +148,7 @@ export default {
         method: "post",
         url: "http://localhost:9999/elec5619/main/list",
         data: {
-          classification: 1,
+          classification: this.classification,
           limit: 20,
           location: this.location,
           offset: 0,
@@ -188,6 +201,18 @@ export default {
 </script>
 
 <style scoped>
+.ant-radio-button-wrapper {
+  background: rgb(90, 24, 177);
+  border: none;
+  padding: 0;
+  color: white;
+}
+.ant-radio-button-wrapper:not(:first-child)::before {
+  width: 0;
+}
+.radiogroup {
+  width: 600px;
+}
 .card {
   margin: 50px;
   background: rgb(90, 24, 177);
@@ -254,6 +279,7 @@ a {
   align-items: center;
 }
 .header-li-wh {
+  text-align: center;
   margin: 10px;
   width: 114px;
   height: 36px;
