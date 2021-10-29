@@ -402,7 +402,7 @@ img {
   position: relative;
   margin-top: 80px;
   width: 100%;
-  height: 400px;
+  height: 430px;
   background-image: linear-gradient(
     rgba(88, 0, 170, 1),
     rgba(194, 128, 255, 1)
@@ -543,6 +543,7 @@ img {
 }
 .group > img {
   height: 100px;
+	width: 250px;
   margin-left: 23%;
 }
 .group > input {
@@ -643,8 +644,8 @@ label {
   }
 }
 .payqr {
-  /* width: 350px;
-  height: 350px; */
+  width: 350px;
+  height: 350px;
   position: relative;
   margin-top: 25px;
   margin-left: 10%;
