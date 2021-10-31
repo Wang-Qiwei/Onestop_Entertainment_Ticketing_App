@@ -66,7 +66,7 @@
           </div>
         </a-form>
       </div>
-      <a-button @click="test">test</a-button>
+
       <router-link to="/Register"
         ><p class="signin">Do not have an account? Sign up here</p></router-link
       >

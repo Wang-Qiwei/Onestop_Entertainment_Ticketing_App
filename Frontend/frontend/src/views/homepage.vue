@@ -52,7 +52,7 @@
         </form>
 
         <div class="h-user-info">
-          <router-link to="/login">
+          <router-link to="/my">
             <img class="avatar" src="@/assets/img/imgPC-header/avatar.png" />
             <span class="wtf"></span>
             <p class="avap">Login</p>
@@ -161,7 +161,7 @@ export default {
             this.id = this.mdata[i].id;
             this.link = this.mdata[i].url;
           }
-          this.url = require("../assets/img/" + this.link);
+          // this.url = require("../assets/img/" + this.link);
 
           if (res.data.success === true) {
             console.log(res.data);

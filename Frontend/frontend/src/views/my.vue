@@ -18,7 +18,7 @@
         </div>
 
         <div class="h-user-info">
-          <router-link to="/login">
+          <router-link to="/my">
             <img class="avatar" :src="avataurl" />
             <span class="wtf"></span>
             <p class="avap">Login</p>
@@ -35,7 +35,7 @@
         <h2 style="text-align: left; margin-left: 5%">MY TICKETS</h2>
 
         <div class="tickets_list" v-for="item in this.data" :key="item.id">
-          <img :src="item.posterurl" />
+          <img :src="item.postURL" />
           <div class="info">
             <h2>Name: {{ item.name }}</h2>
             <h2>Time: {{ item.time }}</h2>
@@ -65,7 +65,7 @@ export default {
       desc: "",
       imgurl: [],
       data: [],
-      posterurl: "",
+      // url: "",
       username: "",
       avataurl: require("../assets/img/my/u195.png"),
       cityList: [
@@ -106,12 +106,11 @@ export default {
           this.data = mydata.tickets;
           for (let i in this.data) {
             this.name = this.data[i].name;
-            this.posterurl = this.data[i].postURL;
+            // this.url = this.data[i].postURL;
             this.time = this.data[i].time;
             this.address = this.data[i].address;
-            this.imgurl.push(this.posterurl);
           }
-          console.log("连接数组", this.imgurl);
+          console.log("连接数组", this.posterurl);
         })
         .catch((err) => {
           console.log(err);
