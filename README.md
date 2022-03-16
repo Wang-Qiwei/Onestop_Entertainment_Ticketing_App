@@ -1,3 +1,5 @@
-# USYD5619-G10
+# One-stop entertainment ticketing app (movies + performances)
+澳大利亚猫眼
+## USYD-5619-Object Oriented Application Frameworks
 
-a
+Nowadays, with the rapid development of the entertainment industry and the Australian government's control of the COVID-19, people have a strong demand for entertainment and a high degree of diversification. At the same time, various performances have been put on the agenda, and entertainment performances will gradually resume in the next few years. However, entertainment information is messy and disorganized, and users need to frequently switch between different platforms to complete information acquisition. The functions of browsing performance schedules and signing up for ticket purchases on many ticket-buying websites are not convenient and intelligent for users. The epidemic has changed consumers' shopping habits, consumption patterns and lifestyles have also accelerated the digital transformation, creating more online consumers. As smart phones become more and more popular and widely used worldwide, people now prefer to buy tickets directly online rather than on-site. Providing users with a one-stop solution is an imminent business opportunity with huge potential. In this context, our project aims to develop a one-stop pan-entertainment platform that integrates entertainment information such as concerts and sports events, supports online ticket purchase, user interaction, and media content marketing, so that users can browse and buy tickets that they are interested in directly. 
